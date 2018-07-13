@@ -1,4 +1,4 @@
-module SemanticUI
+namespace SemanticUI
 
 // open Fable.Import.React
 open Fable.Helpers.React
@@ -8,11 +8,16 @@ open Fable.Core.JsInterop
 
 // [<Pojo>]
 module Button = 
+  type AnimatedOptions =
+    | Fade
+    | Vertical
+    | True
+    
   type Option =
-    | Primary
-//   [<PojoAttribute>]
-//   type  Option = {
-//       Primary : bool
-//   }
+    | [<CompiledName("active")>]IsActive
+    | [<CompiledName("primary")>]IsPrimary
+    // | [<CompiledName("animated")>] IsAnimated
+    | Animated of AnimatedOptions
+
   let inline button (props: Option list) children = 
        ofImport "Button" "semantic-ui-react" ( keyValueList CaseRules.LowerFirst props ) children

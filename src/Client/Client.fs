@@ -6,10 +6,6 @@ open Elmish.React
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
-
-open SemanticUI
-
-
 type Counter = int
 
 
@@ -64,7 +60,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
         [ h1 [] [ str "SAFE Template" ]
           p  [] [ str "The initial counter is fetched from server" ]
           p  [] [ str "Press buttons to manipulate counter:" ]
-          Button.button [ Button.Primary]  [ str "Click"  ]
+        //   Button.button [ Button.Primary ; Button.An]  [ str "Click"  ]
           button [ OnClick (fun _ -> dispatch Decrement) ] [ str "-" ]
           div [] [ str (show model) ]
           button [ OnClick (fun _ -> dispatch Increment) ] [ str "+" ]
