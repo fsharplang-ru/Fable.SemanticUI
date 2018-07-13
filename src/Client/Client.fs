@@ -18,7 +18,7 @@ type Msg =
 
 
 let init () : Model * Cmd<Msg> =
-    let model = Some 42
+    let model = Some 467
     let cmd = Cmd.none
     model, cmd
 
@@ -61,6 +61,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
           p  [] [ str "The initial counter is fetched from server" ]
           p  [] [ str "Press buttons to manipulate counter:" ]
         //   Button.button [ Button.Primary ; Button.An]  [ str "Click"  ]
+        //   Semantic.Button.button [ Button.Primary ] [str "Click" ]
           button [ OnClick (fun _ -> dispatch Decrement) ] [ str "-" ]
           div [] [ str (show model) ]
           button [ OnClick (fun _ -> dispatch Increment) ] [ str "+" ]

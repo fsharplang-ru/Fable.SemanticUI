@@ -1,4 +1,4 @@
-namespace SemanticUI
+namespace Semantic
 
 // open Fable.Helpers.React
 

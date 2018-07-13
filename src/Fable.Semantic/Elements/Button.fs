@@ -1,4 +1,4 @@
-namespace SemanticUI
+namespace Semantic
 
 // open Fable.Import.React
 open Fable.Helpers.React
@@ -18,6 +18,7 @@ module Button =
     | [<CompiledName("primary")>]IsPrimary
     // | [<CompiledName("animated")>] IsAnimated
     | Animated of AnimatedOptions
+    | Posiion of SemanticFloats
 
   let inline button (props: Option list) children = 
        ofImport "Button" "semantic-ui-react" ( keyValueList CaseRules.LowerFirst props ) children
