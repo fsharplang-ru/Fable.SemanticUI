@@ -2,8 +2,8 @@ namespace Semantic
 
 // open Fable.Helpers.React
 
-type SemanticFloats = | Left | Right
-type SemanticTextAlignments = | Left | Center | Right | Justified
-type SemanticVerticalAlignments = | Top | Middle | Bottom
+type Floats = | Left | Right
+type TextAlignments = | Left | Center | Right | Justified
+type VerticalAlignments = | Top | Middle | Bottom
 
 

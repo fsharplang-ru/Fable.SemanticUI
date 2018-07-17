@@ -9,16 +9,16 @@ open Fable.Core.JsInterop
 // [<Pojo>]
 module Button = 
   type AnimatedOptions =
-    | Fade
-    | Vertical
+    | (*[<CompiledName("fade")>]*)Fade
+    | (*[<CompiledName("vertical")>]*)Vertical
     | True
     
   type Option =
-    | [<CompiledName("active")>]IsActive
-    | [<CompiledName("primary")>]IsPrimary
-    // | [<CompiledName("animated")>] IsAnimated
-    | Animated of AnimatedOptions
-    | Posiion of SemanticFloats
+    | (*[<CompiledName("active")>]*)Active
+    | (*[<CompiledName("primary")>]*)Primary
+    | (*[<CompiledName("animated")>]*)Animated
+    // | Position of Floats
 
   let inline button (props: Option list) children = 
-       ofImport "Button" "semantic-ui-react" ( keyValueList CaseRules.LowerFirst props ) children
+      printf "%A" props
+      ofImport "Button" "semantic-ui-react" props children
