@@ -19,7 +19,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
     div []
         [ h1 [] [ str "SAFE Template" ]
           p  [] [ str "Press buttons to manipulate counter:" ]
-          Button.button [ Button.Primary  ]  [ str "Click"  ] 
+          Button.button [ Button.Primary ; Button.Animated Button.True ]  [ str "Click"  ] 
           button [ OnClick (fun _ -> dispatch Decrement) ] [ str "--" ]
           div [] [ str "" ]
           button [ OnClick (fun _ -> dispatch Increment) ] [ str "++" ]
