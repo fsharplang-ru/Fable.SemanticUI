@@ -28,6 +28,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           Button.OnClick (fun x -> Fable.Import.JS.console.warn(x) )
                           Button.Role "menu"
                             ]  [ str "Click"  ] 
+          Button.button' { active = true ; circular = true  } [ str " lool " ]
           button [ OnClick (fun _ -> dispatch Decrement) ] [ str "--" ]
           div [] [ str "" ]
           button [ OnClick (fun _ -> dispatch Increment) ] [ str "++" ]

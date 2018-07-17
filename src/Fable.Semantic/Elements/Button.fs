@@ -21,6 +21,10 @@ type ButtonAnimatedOptions = | Fade | Vertical | True
 // [<Pojo>]
 [<RequireQualifiedAccess>]
 module Button = 
+  type [<Pojo>] OptionObj = {
+    active : bool 
+    circular : bool
+  }
   type Option =
     ///A button can show it is currently the active user selection.
     | Active
@@ -74,9 +78,11 @@ module Button =
     ///A button can be formatted to toggle on and off.
     | Toggle
     ///Custom props
-    | Props of IHTMLProp
+    | Props of IHTMLProp list
 
     
     
   let button (props: Option list) children = 
       ofImport "Button" "semantic-ui-react" (keyValueList CaseRules.LowerFirst props) children
+  let button' (props:  OptionObj ) =
+       ofImport "Button" "semantic-ui-react" props
