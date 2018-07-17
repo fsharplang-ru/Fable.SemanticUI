@@ -4,6 +4,7 @@ open Elmish.React
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Semantic
+open Semantic
 type Counter = int
 type Model = Counter option
 type Msg = | Increment| Decrement
@@ -19,7 +20,14 @@ let view (model : Model) (dispatch : Msg -> unit) =
     div []
         [ h1 [] [ str "SAFE Template" ]
           p  [] [ str "Press buttons to manipulate counter:" ]
-          Button.button [ Button.Primary ; Button.Animated Button.True ]  [ str "Click"  ] 
+          Button.button [ Button.Active
+                          Button.Floated Floats.Right
+                          
+                          Button.Toggle
+                        //   Button.Primary
+                          Button.OnClick (fun x -> Fable.Import.JS.console.warn(x) )
+                          Button.Role "menu"
+                            ]  [ str "Click"  ] 
           button [ OnClick (fun _ -> dispatch Decrement) ] [ str "--" ]
           div [] [ str "" ]
           button [ OnClick (fun _ -> dispatch Increment) ] [ str "++" ]
