@@ -11,4 +11,6 @@ type VerticalAlignments = | Top | Middle | Bottom
 [<StringEnum>]
 type Sizes =   | Mini | Tiny | Small | Medium | Large | Big | Huge | Massive
 
-
+module Utils =
+  [<Emit("null")>]
+  let typedNull<'a> :'a = jsNative 
