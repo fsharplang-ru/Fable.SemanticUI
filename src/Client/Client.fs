@@ -6,7 +6,6 @@ open Fable.Helpers.React.Props
 open Semantic.Elements.ListApi
 open Fable.Core
 open Semantic.Elements
-open System.ComponentModel
 
 
 type Counter = int
