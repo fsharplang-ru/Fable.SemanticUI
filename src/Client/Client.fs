@@ -3,8 +3,10 @@ open Elmish
 open Elmish.React
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
-open Semantic.Elements.ObjectApi
+open Semantic.Elements.ListApi
 open Fable.Core
+open Semantic.Elements
+open System.ComponentModel
 
 
 type Counter = int
@@ -20,24 +22,21 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     model', Cmd.none
 
 let showObjApiButton strn onCLick = 
-             Button.button { 
-                 Button.buttonDft with 
-                    onClick = onCLick
-                    toggle = true
-                    animated = U2.Case2 <| Fade 
-                    primary = true } 
+             Button.button [
+                    Button.OnClick  onCLick
+                    Button.IsToggle true
+                    Button.Animated Fade 
+                    Button.IsPrimary  true ] 
                     [ 
-                        Button.content { Button.contentDft with 
-                                             hidden = true  } [
+                        Button.content [  Button.Hidden  true  ] [
                                              str "-1"
                                          ]
-                        Button.content { Button.contentDft with
-                                             visible = true } [
+                        Button.content [ Button.Visible  true ] [
                                              str strn
                                          ]
                     ]                                          
 
-open Semantic.Elements.ListApi
+
 let showListApiButton strn onClick  = 
        Button.buttonAsLink 
                      [ Button.OnClick onClick
@@ -47,17 +46,16 @@ let showListApiButton strn onClick  =
                      ]
 
 let view (model : Model) (dispatch : Msg -> unit) =
-    div []
-        [ h1 [] [ str "SAFE Template" ]
-          p  [] [ str "Press buttons to manipulate counter:" ]
-          Button.group [] (* { Button.groupDft with 
-                                         vertical = true }  *)
-                                         [
-                                             showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
-                                             Button.Or  [ Button.Text  <| (match model with | Some x -> string x | None -> "Loading...") ]
-                                             showListApiButton "=" (fun _ -> dispatch Increment)
-                                         ]
-          ]
+    div [] [  
+            Container.container [ Container.TextAlign Semantic.Center ] [
+              h1 [] [ str "Semanic UI + Fable " ]
+              p  [] [ str "Press buttons to manipulate counter:" ]
+              Button.group [] [ showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
+                                Button.Or  [ Button.Text  <| (match model with | Some x -> string x | None -> "Loading...") ]
+                                showListApiButton "=" (fun _ -> dispatch Increment)
+                                             ]
+            ]
+    ]
 
 
 #if DEBUG

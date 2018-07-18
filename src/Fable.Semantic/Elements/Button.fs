@@ -1,5 +1,5 @@
 
-namespace Semantic.Elements.ObjectApi
+namespace Semantic.Elements
 
 open Fable.Helpers.React
 open Fable.Core
@@ -15,6 +15,13 @@ open Semantic.Utils
     |Red |Orange |Yellow |Olive |Ggreen |Teal |Blue |Violet|Purple |Pink |Brown |Grey |Black |Facebook |[<CompiledName("google plus")>]GooglePlus |Instagram |Linkedin |Twitter |Vk |Youtube 
   [<StringEnum>]
   type ButtonLabelPostion = Left | Right
+namespace Semantic.Elements.ObjectApi
+
+open Semantic.Elements
+open Fable.Helpers.React
+open Fable.Core
+open Semantic.Utils
+
   type [<Pojo>] ButtonOption = 
       {
         ///A button can show it is currently the active user selection.
@@ -211,6 +218,7 @@ open Fable.Helpers.React.Props
 open Fable.Import
 open Fable.Helpers.React
 open Fable.Core
+open Semantic.Elements
 // open Semantic.Elements.ObjectApi
 
 

@@ -11,7 +11,7 @@ type [<Pojo>] ContentOptions = {
    /// Container has no maximum width.
    fluid : bool
    /// Align container text.
-   textAligin : Semantic.TextAlignments
+   textAlign : Semantic.TextAlignments
    //// Reduce maximum width to more naturally accommodate text.
    text : bool
 }
@@ -21,7 +21,7 @@ module Container =
        ``as`` = Utils.typedNull<string>
        className = Utils.typedNull<string>
        fluid = Utils.typedNull<bool>
-       textAligin = Utils.typedNull<Semantic.TextAlignments>
+       textAlign = Utils.typedNull<Semantic.TextAlignments>
        text = Utils.typedNull<bool>
    } 
    let container (props: ContentOptions ) = 
@@ -40,7 +40,7 @@ module Container =
    /// Container has no maximum width.
    | Fluid of bool
    /// Align container text.
-   | TextAligin of Semantic.TextAlignments
+   | TextAlign of Semantic.TextAlignments
    //// Reduce maximum width to more naturally accommodate text.
    | Text of bool
 
@@ -49,7 +49,7 @@ module Container =
       | As s -> { r with ``as`` = s }
       | ClassName s -> { r with className = s } 
       | Fluid s -> { r with fluid = s}
-      | TextAligin s -> {r with textAligin =  s}
+      | TextAlign s -> {r with textAlign=  s}
       | Text t -> { r with text = t }
     
 
