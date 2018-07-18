@@ -10,7 +10,7 @@ open Fable.Core
 type Counter = int
 type Model = Counter option
 type Msg = | Increment| Decrement
-let init () : Model * Cmd<Msg> = Some 467, Cmd.none
+let init () : Model * Cmd<Msg> = Some 42, Cmd.none
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     let model' =
         match model,  msg with
@@ -21,7 +21,7 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
 
 let showObjApiButton strn onCLick = 
              Button.button { 
-                 Button.dft with 
+                 Button.buttonDft with 
                     onClick = onCLick
                     toggle = true
                     animated = U2.Case2 Fade
@@ -50,9 +50,13 @@ let view (model : Model) (dispatch : Msg -> unit) =
     div []
         [ h1 [] [ str "SAFE Template" ]
           p  [] [ str "Press buttons to manipulate counter:" ]
-          showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
-          div [] [ str (match model with | Some x -> string x | None -> "Loading...") ]
-          showListApiButton "=" (fun _ -> dispatch Increment)
+          Button.group Button.groupDft (* { Button.groupDft with 
+                                         vertical = true }  *)
+                                         [
+                                             showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
+                                             Button.Or  { Button.orDft with text = (match model with | Some x -> string x | None -> "Loading...") } 
+                                             showListApiButton "=" (fun _ -> dispatch Increment)
+                                         ]
           ]
 
 

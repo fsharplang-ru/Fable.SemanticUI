@@ -73,13 +73,60 @@ open Semantic.Utils
         (*props : IHTMLProp*) } 
     type [<Pojo>] ButtonContentOptions = {
       ``as`` : string
+      /// Additional classes
       className : string
+      ///Initially hidden, visible on hover.
       hidden : bool
+      ///Initially visible, hidden on hover.
       visible : bool
+    }
+    type [<Pojo>] ButtonOrOptions = {
+        ``as`` : string
+        /// Additional classes
+        className : string
+        ///Or buttons can have their text localized, or adjusted by using the text prop.
+        text : string
+    }
+    type [<Pojo>] ButonGroupOptions = {
+          ///An element type to render as f.e. 'div', 'a', etc.
+        ``as`` : string
+         ///A button can be attached to other content.
+        attached : ButtonAttachedOptions
+        ///A basic button is less pronounced.
+        basic : bool
+        //Additional classes.
+        className : string
+        ///A button can have different colors
+        color : ButtonCollor
+        ///A button can reduce its padding to fit into tighter spaces.
+        compact : bool      
+        ///A button can be aligned to the left or right of its container.
+        floated : Semantic.Floats  
+        ///A button can take the width of its container.
+        fluid : bool  
+        ///  ?? TODO check if this needed
+        icon : bool           
+        ///A button can be formatted to appear on dark backgrounds.
+        inverted : bool          
+        ///A button can hint towards a negative consequence.
+        negative : bool
+        ///A button can hint towards a positive consequence.
+        positive : bool   
+        //A button can be formatted to show different levels of emphasis.
+        primary  : bool
+        ///A button can be formatted to show different levels of emphasis.
+        secondary : bool
+        ///A button can have different sizes.
+        size : Semantic.Sizes
+        ///A button can be formatted to toggle on and off.
+        toggle : bool   
+        ///Groups can be formatted to appear vertically.
+        vertical : bool         
+        widths : Semantic.Widths
     }
     [<RequireQualifiedAccess>]
     module Button = 
-      let dft = {
+      let buttonDft = {
                                     active = typedNull<bool> // false
                                     attached = typedNull<ButtonAttachedOptions>
                                     toggle = typedNull<bool> // false
@@ -114,6 +161,32 @@ open Semantic.Utils
           hidden  =  typedNull<bool>
           visible  =  typedNull<bool>
       }
+      let orDft : ButtonOrOptions = {
+          ``as`` = typedNull<string>
+          text = typedNull<string>
+          className = typedNull<string>
+      }
+      let groupDft :ButonGroupOptions =  {
+                                    
+                                    attached = typedNull<ButtonAttachedOptions>
+                                    toggle = typedNull<bool> // false
+                                    size = typedNull<Semantic.Sizes> // Medium
+                                    secondary = typedNull<bool> // false
+                                    primary = typedNull<bool> // false
+                                    positive = typedNull<bool> // false
+                                    negative = typedNull<bool> // false
+                                    inverted = typedNull<bool> // false
+                                    icon = typedNull<bool> // false
+                                    fluid = typedNull<bool> 
+                                    floated = typedNull<Semantic.Floats>
+                                    ``as`` = typedNull<string>
+                                    basic = typedNull<bool>
+                                    className  = typedNull<string>
+                                    color = typedNull<ButtonCollor>
+                                    compact = typedNull<bool>
+                                    vertical =  typedNull<bool>
+                                    widths =  typedNull<Semantic.Widths>
+      }
       let button (prps: ButtonOption )  = 
           ofImport "Button" "semantic-ui-react" prps 
       let buttonAsDim (props : ButtonOption) = 
@@ -124,7 +197,10 @@ open Semantic.Utils
           button { props with ``as`` = str } 
       let content (props : ButtonContentOptions) = 
           ofImport "Button.Content" "semantic-ui-react" props 
-          
+      let Or (props : ButtonOrOptions) = 
+          ofImport "Button.Or" "semantic-ui-react" props []
+      let group (props : ButonGroupOptions) =
+          ofImport "Button.Group" "semantic-ui-react" props 
       
 namespace Semantic.Elements.ListApi
 
@@ -222,12 +298,12 @@ module Button =
           | IsToggle b -> {r with toggle = b }
           // | Props p -> { r with props =  r.props. }
     let button (props: ButtonOption list)  = 
-        Button.button (List.fold parseOption Button.dft props) 
+        Button.button (List.fold parseOption Button.buttonDft props) 
     let buttonAsDim (props : ButtonOption list) = 
-        Button.buttonAsDim (List.fold parseOption Button.dft props)
+        Button.buttonAsDim (List.fold parseOption Button.buttonDft props)
     let buttonAsLink (props : ButtonOption list) = 
-        Button.buttonAsLink (List.fold parseOption Button.dft props)
+        Button.buttonAsLink (List.fold parseOption Button.buttonDft props)
     let AsCustom str (props : ButtonOption list) = 
-        Button.buttonAs str (List.fold parseOption Button.dft props)
+        Button.buttonAs str (List.fold parseOption Button.buttonDft props)
 
     

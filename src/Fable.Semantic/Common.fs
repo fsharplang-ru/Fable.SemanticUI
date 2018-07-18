@@ -10,7 +10,7 @@ type TextAlignments = | Left | Center | Right | Justified
 type VerticalAlignments = | Top | Middle | Bottom
 [<StringEnum>]
 type Sizes =   | Mini | Tiny | Small | Medium | Large | Big | Huge | Massive
-
-module Utils =
+type Widths = | One | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Eleven | Twelve | Therteen | Fourteen | Fifteen | Sixteen
+module Utils = 
   [<Emit("null")>]
   let typedNull<'a> :'a = jsNative 
