@@ -4,6 +4,8 @@ open Elmish.React
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Semantic.Elements.ObjectApi
+open Fable.Core
+
 
 type Counter = int
 type Model = Counter option
@@ -18,17 +20,27 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     model', Cmd.none
 
 let showObjApiButton strn onCLick = 
-             printf "obj" 
-             Button.button { Button.dft with 
-                                onClick = onCLick
-                                circular = true
-                                primary = true } 
-                                          [ str "Click obj api" ]                                          
+             Button.button { 
+                 Button.dft with 
+                    onClick = onCLick
+                    toggle = true
+                    animated = U2.Case2 Fade
+                    primary = true } 
+                    [ 
+                        Button.content { Button.contentDft with 
+                                             hidden = true  } [
+                                             str "-1"
+                                         ]
+                        Button.content { Button.contentDft with
+                                             visible = true } [
+                                             str strn
+                                         ]
+                    ]                                          
 
 open Semantic.Elements.ListApi
 let showListApiButton strn onClick  = 
-   printf "list"
-   Button.button [ Button.OnClick onClick
+   Button.buttonAsLink 
+                 [ Button.OnClick onClick
                    Button.IsNegative true ] 
                  [ 
                      str "Click list api"
@@ -38,7 +50,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
     div []
         [ h1 [] [ str "SAFE Template" ]
           p  [] [ str "Press buttons to manipulate counter:" ]
-          showObjApiButton "-" (fun _ -> dispatch Decrement)
+          showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
           div [] [ str (match model with | Some x -> string x | None -> "Loading...") ]
           showListApiButton "=" (fun _ -> dispatch Increment)
           ]

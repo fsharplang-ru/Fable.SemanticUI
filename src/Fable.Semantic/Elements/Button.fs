@@ -54,7 +54,7 @@ open Semantic.Utils
         /// OnClick ( fun (event, data) -> .. ) 
         /// event - React's original SyntheticEvent.
         /// data - All props.
-        onClick :  (( Fable.Import.React.SyntheticEvent * obj ) -> unit)
+        onClick :  (( Fable.Import.React.SyntheticEvent * ButtonOption ) -> unit)
         ///A button can hint towards a positive consequence.
         positive : bool 
         //A button can be formatted to show different levels of emphasis.
@@ -70,8 +70,13 @@ open Semantic.Utils
         ///A button can be formatted to toggle on and off.
         toggle : bool
         ///Custom props (TODO Check) ??
-        props : IHTMLProp list } 
-        
+        (*props : IHTMLProp*) } 
+    type [<Pojo>] ButtonContentOptions = {
+      ``as`` : string
+      className : string
+      hidden : bool
+      visible : bool
+    }
     [<RequireQualifiedAccess>]
     module Button = 
       let dft = {
@@ -100,10 +105,27 @@ open Semantic.Utils
                                     color = typedNull<ButtonCollor>
                                     compact = typedNull<bool>
                                     disabled = typedNull<bool>
-                                    props = []
+                                    // props = []
                                   }
-      let button (props: ButtonOption )  = 
-          ofImport "Button" "semantic-ui-react" (props) 
+
+      let contentDft :ButtonContentOptions = {
+          ``as`` =  typedNull<string>
+          className  =  typedNull<string>
+          hidden  =  typedNull<bool>
+          visible  =  typedNull<bool>
+      }
+      let button (prps: ButtonOption )  = 
+          ofImport "Button" "semantic-ui-react" prps 
+      let buttonAsDim (props : ButtonOption) = 
+          button { props with ``as`` = "dim" }
+      let buttonAsLink (props : ButtonOption) = 
+          button { props with ``as`` = "a" } 
+      let buttonAs str (props : ButtonOption) =
+          button { props with ``as`` = str } 
+      let content (props : ButtonContentOptions) = 
+          ofImport "Button.Content" "semantic-ui-react" props 
+          
+      
 namespace Semantic.Elements.ListApi
 
 open Semantic.Elements.ObjectApi
@@ -154,7 +176,7 @@ module Button =
       /// OnClick ( fun (event, data) -> .. ) 
       /// event - React's original SyntheticEvent.
       /// data - All props.
-      | OnClick of  (( React.SyntheticEvent * obj ) -> unit)
+      | OnClick of  (( React.SyntheticEvent * Semantic.Elements.ObjectApi.ButtonOption ) -> unit)
       ///A button can hint towards a positive consequence.
       | IsPositive of bool 
       //A button can be formatted to show different levels of emphasis.
@@ -170,9 +192,8 @@ module Button =
       ///A button can be formatted to toggle on and off.
       | IsToggle of bool
       ///Custom props
-      | Props of IHTMLProp list
-    let button (props: ButtonOption list)  = 
-        let parseOption r opt = 
+      // | Props of IHTMLProp list
+    let private parseOption r opt = 
           match opt with 
           | IsActive b -> { r with active = b  }  
           | As str -> {r with ``as`` = str}
@@ -199,7 +220,14 @@ module Button =
           | Size s -> {r with size = s}
           | TabIndex i ->  { r with tabIndex = i}
           | IsToggle b -> {r with toggle = b }
-          | Props p -> { r with props = p @ r.props}
+          // | Props p -> { r with props =  r.props. }
+    let button (props: ButtonOption list)  = 
         Button.button (List.fold parseOption Button.dft props) 
+    let buttonAsDim (props : ButtonOption list) = 
+        Button.buttonAsDim (List.fold parseOption Button.dft props)
+    let buttonAsLink (props : ButtonOption list) = 
+        Button.buttonAsLink (List.fold parseOption Button.dft props)
+    let AsCustom str (props : ButtonOption list) = 
+        Button.buttonAs str (List.fold parseOption Button.dft props)
 
     
