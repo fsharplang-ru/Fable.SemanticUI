@@ -27,7 +27,7 @@ open Semantic.Elements.ListApi
 let showListApiButton () = 
    printf "list"
    Button.button [ Button.OnClick (fun _ -> printf "list api clicked" )
-                   Button.Negative ] 
+                   Button.IsNegative true ] 
                  [ 
                      str "Click list api"
                  ]

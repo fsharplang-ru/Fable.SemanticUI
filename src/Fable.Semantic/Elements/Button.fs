@@ -117,88 +117,88 @@ open Fable.Core
 module Button =
     type ButtonOption =
       ///A button can show it is currently the active user selection.
-      | Active
+      | IsActive of bool
       ///An element type to render as f.e. 'div', 'a', etc.
-      | As of string
+      | As  of string
       ///A button can animate to show hidden content. Use this for default animation
-      | IsAnimated 
+      | IsAnimated of bool
       ///A button can animate to show hidden content. Choose animation
       | Animated of ButtonAnimatedOptions 
       ///A button can be attached to other content.
       | Attached of ButtonAttachedOptions
       ///A basic button is less pronounced.
-      | Basic
+      | IsBasic of bool
       ///A button can be circular.
-      | Circular
+      | IsCircular of bool
       ///A button can have different colors
       | Color of ButtonCollor
       ///A button can reduce its padding to fit into tighter spaces.
-      | Compact
+      | IsCompact of bool
       ///A button can show it is currently unable to be interacted with.
-      | Disabled
+      | IsDisabled of bool
       ///A button can be aligned to the left or right of its container.
-      | Floated of Semantic.Floats
+      | Floated  of Semantic.Floats
       ///	A button can take the width of its container.
-      | Fluid 
+      | IsFluid of bool 
       ///  ?? TODO check is this need
-      | Icon
+      | Icon of bool
       ///A button can be formatted to appear on dark backgrounds.
-      | Inverted
+      | IsInverted of bool
       /// A labeled button can format a Label or Icon to appear on the left or right.
       | LabelPosition of ButtonLabelPostion
       /// A button can show a loading indicator.
-      | Loading 
+      | IsLoading of bool 
       ///A button can hint towards a negative consequence.
-      | Negative
+      | IsNegative of bool
       ///Called after user's click. 
       /// OnClick ( fun (event, data) -> .. ) 
       /// event - React's original SyntheticEvent.
       /// data - All props.
       | OnClick of  (( React.SyntheticEvent * obj ) -> unit)
       ///A button can hint towards a positive consequence.
-      | Positive 
+      | IsPositive of bool 
       //A button can be formatted to show different levels of emphasis.
-      | Primary 
+      | IsPrimary of bool 
       ///The role of the HTML element. default : 'button'
       | Role of string
       ///A button can be formatted to show different levels of emphasis.
-      | Secondary 
+      | IsSecondary of bool 
       ///A button can have different sizes.
       | Size of Semantic.Sizes
       ///A button can receive focus.
       | TabIndex of int
       ///A button can be formatted to toggle on and off.
-      | Toggle
+      | IsToggle of bool
       ///Custom props
       | Props of IHTMLProp list
     let button (props: ButtonOption list)  = 
         let parseOption r opt = 
           match opt with 
-          | Active -> { r with active = true }  
+          | IsActive b -> { r with active = b  }  
           | As str -> {r with ``as`` = str}
-          | IsAnimated -> {r with animated = U2.Case1 true  }
+          | IsAnimated b -> {r with animated = U2.Case1 b   }
           | Animated a -> {r with animated = U2.Case2 a }
           | Attached a -> {r with attached = a }
-          | Basic -> {r with basic = true}
-          | Circular -> {r with circular = true}
+          | IsBasic b -> {r with basic = b }
+          | IsCircular b -> {r with circular = b }
           | Color c -> {r with color = c}
-          | Compact -> {r with compact = true}
-          | Disabled -> {r with disabled = true}
+          | IsCompact b -> {r with compact = true}
+          | IsDisabled b -> {r with disabled = b }
           | Floated f -> {r with floated = f }
-          | Fluid -> {r with fluid = true }
-          | Icon -> {r with icon = true}
-          | Inverted -> {r with inverted = true}
+          | IsFluid b -> {r with fluid = b  }
+          | Icon b -> {r with icon = b }
+          | IsInverted b -> {r with inverted = b }
           | LabelPosition lp -> { r with labelPosition = lp}
-          | Loading -> {r with loading = false}
-          | Negative -> { r with negative = true}
+          | IsLoading b -> {r with loading = b }
+          | IsNegative b -> { r with negative = b }
           | OnClick f -> {r with onClick = f}   
-          | Positive -> {r with positive = true}
-          | Primary -> { r with primary = true}
+          | IsPositive b -> {r with positive = b }
+          | IsPrimary b -> { r with primary = b }
           | Role s -> { r with role = s }
-          | Secondary -> {r with secondary = true}
+          | IsSecondary b -> {r with secondary = b }
           | Size s -> {r with size = s}
           | TabIndex i ->  { r with tabIndex = i}
-          | Toggle -> {r with toggle = true}
+          | IsToggle b -> {r with toggle = b }
           | Props p -> { r with props = p @ r.props}
         Button.button (List.fold parseOption Button.dft props) 
 
