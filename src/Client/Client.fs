@@ -24,7 +24,7 @@ let showObjApiButton strn onCLick =
                  Button.buttonDft with 
                     onClick = onCLick
                     toggle = true
-                    animated = U2.Case2 Fade
+                    animated = U2.Case2 <| Fade 
                     primary = true } 
                     [ 
                         Button.content { Button.contentDft with 
@@ -39,22 +39,22 @@ let showObjApiButton strn onCLick =
 
 open Semantic.Elements.ListApi
 let showListApiButton strn onClick  = 
-   Button.buttonAsLink 
-                 [ Button.OnClick onClick
-                   Button.IsNegative true ] 
-                 [ 
-                     str "Click list api"
-                 ]
+       Button.buttonAsLink 
+                     [ Button.OnClick onClick
+                       Button.IsNegative true ] 
+                     [ 
+                         str "Click list api"
+                     ]
 
 let view (model : Model) (dispatch : Msg -> unit) =
     div []
         [ h1 [] [ str "SAFE Template" ]
           p  [] [ str "Press buttons to manipulate counter:" ]
-          Button.group Button.groupDft (* { Button.groupDft with 
+          Button.group [] (* { Button.groupDft with 
                                          vertical = true }  *)
                                          [
                                              showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
-                                             Button.Or  { Button.orDft with text = (match model with | Some x -> string x | None -> "Loading...") } 
+                                             Button.Or  [ Button.Text  <| (match model with | Some x -> string x | None -> "Loading...") ]
                                              showListApiButton "=" (fun _ -> dispatch Increment)
                                          ]
           ]

@@ -6,6 +6,7 @@ open Fable.Core
 open Fable.Helpers.React.Props
 open Semantic.Utils
 
+  [<StringEnum>]
   type ButtonAnimatedOptions = | Fade | Vertical  
   [<StringEnum>]
   type ButtonAttachedOptions = | Left | Right | Top | Bottom
@@ -155,7 +156,7 @@ open Semantic.Utils
                                     // props = []
                                   }
 
-      let contentDft :ButtonContentOptions = {
+      let contentDft : ButtonContentOptions = {
           ``as`` =  typedNull<string>
           className  =  typedNull<string>
           hidden  =  typedNull<bool>
@@ -166,7 +167,7 @@ open Semantic.Utils
           text = typedNull<string>
           className = typedNull<string>
       }
-      let groupDft :ButonGroupOptions =  {
+      let groupDft : ButonGroupOptions =  {
                                     
                                     attached = typedNull<ButtonAttachedOptions>
                                     toggle = typedNull<bool> // false
@@ -188,6 +189,7 @@ open Semantic.Utils
                                     widths =  typedNull<Semantic.Widths>
       }
       let button (prps: ButtonOption )  = 
+        //   Fable.Import.JS.console.trace prps
           ofImport "Button" "semantic-ui-react" prps 
       let buttonAsDim (props : ButtonOption) = 
           button { props with ``as`` = "dim" }
@@ -209,10 +211,101 @@ open Fable.Helpers.React.Props
 open Fable.Import
 open Fable.Helpers.React
 open Fable.Core
+// open Semantic.Elements.ObjectApi
 
 
 [<RequireQualifiedAccess>]
 module Button =
+
+    type ButtonContentOptions  =
+     | As of string
+      /// Additional classes
+     | ClassName of string
+      ///Initially hidden, visible on hover.
+     | Hidden of bool
+      ///Initially visible, hidden on hover.
+     | Visible of bool
+    
+    let private parseButtonConentOptions (r : Semantic.Elements.ObjectApi.ButtonContentOptions) opts = 
+       match opts with
+       | As s -> { r with ``as`` = s }
+       | ClassName s -> { r with className = s}
+       | Hidden b -> { r with hidden = b }
+       | Visible b -> { r with visible = b  }
+
+
+    type  ButonGroupOptions =
+          ///An element type to render as f.e. 'div', 'a', etc.
+        | As of string
+         ///Groups can be attached to other content.
+        | Attached of ButtonAttachedOptions
+        ///Groups is less pronounced.
+        | Basic of bool
+        //Additional classes.
+        | ClassName of string
+        ///Groups can have different colors
+        | Color of ButtonCollor
+        ///Groups can reduce its padding to fit into tighter spaces.
+        | Compact of bool      
+        ///Groups can be aligned to the left or right of its container.
+        | Floated of Semantic.Floats  
+        ///Groups can take the width of its container.
+        | Fluid of bool  
+        ///  ?? TODO check if this needed
+        | Icon of bool           
+        ///Groups can be formatted to appear on dark backgrounds.
+        | Inverted of bool          
+        ///Groups can hint towards a negative consequence.
+        | Negative of bool
+        ///Groups can hint towards a positive consequence.
+        | Positive of bool   
+        ///Groups can be formatted to show different levels of emphasis.
+        | Primary  of bool
+        ///Groups can be formatted to show different levels of emphasis.
+        | Secondary of bool
+        ///Groups can have different sizes.
+        | Size of Semantic.Sizes
+        ///Groups can be formatted to toggle on and off.
+        | Toggle of bool   
+        ///Groups can be formatted to appear vertically.
+        | Vertical of bool     
+        ///Groups can have their widths divided evenly.
+        | Widths of Semantic.Widths
+    let private parseButtonGroupOption (r : Semantic.Elements.ObjectApi.ButonGroupOptions) opts =
+        match opts with
+        | As o -> { r with ``as`` = o } 
+        | Attached o -> { r with attached = o } 
+        | Basic o -> { r with basic = o  } 
+        | ClassName o -> { r with className = o } 
+        | Color o -> { r with color = o } 
+        | Compact o -> { r with compact = o }       
+        | Floated o -> { r with floated = o }   
+        | Fluid o -> { r with fluid = o }   
+        | Icon o -> { r with icon = o }            
+        | Inverted o -> { r with inverted = o }           
+        | Negative o -> { r with negative = o  } 
+        | Positive o -> { r with positive = o }    
+        | Primary  o -> { r with primary = o } 
+        | Secondary o -> { r with secondary = o } 
+        | Size o -> { r with size = o } 
+        | Toggle o -> { r with toggle = o }    
+        | Vertical o -> { r with vertical = o }      
+        | Widths o -> { r with widths = o  }  
+
+
+    type ButtonOrOptions = 
+      |  As of string
+        /// Additional classes
+      |  ClassName of string
+        ///Or buttons can have their text localized, or adjusted by using the text prop.
+      |  Text of string
+    
+    let private parseButtonOrOptions (r: Semantic.Elements.ObjectApi.ButtonOrOptions) opt  =
+      match opt with 
+      | As s -> { r with ``as`` = s }
+      | ClassName s -> { r with className = s }
+      | Text s -> { r with text = s }
+
     type ButtonOption =
       ///A button can show it is currently the active user selection.
       | IsActive of bool
@@ -269,7 +362,7 @@ module Button =
       | IsToggle of bool
       ///Custom props
       // | Props of IHTMLProp list
-    let private parseOption r opt = 
+    let private parseButtonOption r opt = 
           match opt with 
           | IsActive b -> { r with active = b  }  
           | As str -> {r with ``as`` = str}
@@ -298,12 +391,18 @@ module Button =
           | IsToggle b -> {r with toggle = b }
           // | Props p -> { r with props =  r.props. }
     let button (props: ButtonOption list)  = 
-        Button.button (List.fold parseOption Button.buttonDft props) 
+        Button.button (List.fold parseButtonOption Button.buttonDft props) 
     let buttonAsDim (props : ButtonOption list) = 
-        Button.buttonAsDim (List.fold parseOption Button.buttonDft props)
+        Button.buttonAsDim (List.fold parseButtonOption Button.buttonDft props)
     let buttonAsLink (props : ButtonOption list) = 
-        Button.buttonAsLink (List.fold parseOption Button.buttonDft props)
+        Button.buttonAsLink (List.fold parseButtonOption Button.buttonDft props)
     let AsCustom str (props : ButtonOption list) = 
-        Button.buttonAs str (List.fold parseOption Button.buttonDft props)
+        Button.buttonAs str (List.fold parseButtonOption Button.buttonDft props)
 
+    let Or (props: ButtonOrOptions list)  =
+       Button.Or (List.fold parseButtonOrOptions Button.orDft props)
+    let group (props: ButonGroupOptions list) =
+       Button.group (List.fold parseButtonGroupOption Button.groupDft props)
     
+    let content (props: ButtonContentOptions list) =
+       Button.content (List.fold parseButtonConentOptions Button.contentDft props)
