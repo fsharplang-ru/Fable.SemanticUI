@@ -13,8 +13,8 @@ module Button =
     [<StringEnum>]
     type Attached = | Left | Right | Top | Bottom
     [<StringEnum>]
-    type Collor = 
-      |Red |Orange |Yellow |Olive |Ggreen |Teal |Blue |Violet|Purple |Pink |Brown |Grey |Black |Facebook |[<CompiledName("google plus")>]GooglePlus |Instagram |Linkedin |Twitter |Vk |Youtube 
+    type Color = |Facebook |[<CompiledName("google plus")>]GooglePlus |Instagram |Linkedin |Twitter |Vk |Youtube 
+         with interface  Semantic.ICollor
     [<StringEnum>]
     type LabelPostion = Left | Right
 
@@ -43,7 +43,7 @@ module Button =
             //Additional classes.
             | ClassName of string
             ///Groups can have different colors
-            | Color of Collor
+            | Color of Semantic.Collor
             ///Groups can reduce its padding to fit into tighter spaces.
             | Compact of bool      
             ///Groups can be aligned to the left or right of its container.
@@ -101,7 +101,7 @@ module Button =
       ///A button can be circular.
       | Circular of bool
       ///A button can have different colors
-      | Color of Collor
+      | Color of Semantic.ICollor
       ///A button can reduce its padding to fit into tighter spaces.
       | Compact of bool
       ///A button can show it is currently unable to be interacted with.

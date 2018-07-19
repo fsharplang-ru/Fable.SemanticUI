@@ -2,7 +2,7 @@ namespace Semantic.Elements.Api
 
 [<RequireQualifiedAccess>]
 module Divider =
-open Fable.Core
+  open Fable.Core
   type Options =
       | As of string
        ///Additional classes.

@@ -2,10 +2,8 @@ module Client
 open Elmish
 open Elmish.React
 open Fable.Helpers.React
-open Fable.Helpers.React.Props
 open Semantic.Elements.Api
 open Fable.Core
-open Semantic.Elements
 open Fable.Import
 // open Semantic.Elements.ObjectApi
 
@@ -49,21 +47,21 @@ let showListApiButton strn onClick  =
                      ]
 
 let view (model : Model) (dispatch : Msg -> unit) =
-    div [] [  
-            Container.container [ Container.TextAlign Semantic.Center
-                                  Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("asasad") ) ] ] [
-              h1 [] [ str "Semanic UI + Fable " ]
-              Divider.divider [ Divider.Horizontal true ] [
-                  str "From "
-                  Flag.flag [ Flag.Name Flags.Russia ]
-                  str "with love"
-              ] 
-              p  [] [ str "Press buttons to manipulate counter:" ]
-              Button.group [] [ showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
-                                Button.or'  [ Button.Or.Text  <| (match model with | Some x -> string x | None -> "Loading...") ]
-                                showListApiButton "=" (fun _ -> dispatch Increment)
+    Container.container [ 
+                          Container.TextAlign Semantic.Center
+                          Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("asasad") ) ] ]  
+                        [
+                          Header.header [ Size Header.Huge] 
+                                        [ str "Semanic UI + Fable" ]
+                          Divider.divider [ Divider.Horizontal true ] [
+                              str "From "
+                              Flag.flag [ Flag.Name Flags.Russia ]
+                              str "with love"  ] 
+                          p  [] [ str "Press buttons to manipulate counter:" ]
+                          Button.group [] [ showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
+                                            Button.or'  [ Button.Or.Text  <| (match model with | Some x -> string x | None -> "Loading...") ]
+                                            showListApiButton "=" (fun _ -> dispatch Increment)
                                              ]
-            ]
     ]
 
 
