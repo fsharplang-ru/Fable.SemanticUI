@@ -4,10 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-
     <Compile Include="Common.fs" />
     <Compile Include="Elements/Container.fs" />
     <Compile Include="Elements/Button.fs" />
+    <Compile Include="Elements/Divider.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
