@@ -1,4 +1,3 @@
-
 namespace Semantic.Elements
 
 open Fable.Helpers.React
