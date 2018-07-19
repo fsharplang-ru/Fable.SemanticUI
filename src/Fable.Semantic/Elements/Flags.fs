@@ -1,6 +1,5 @@
 namespace Semantic.Elements.Flags
 
-
 open Fable.Core
 
 [<StringEnum>]
@@ -497,41 +496,21 @@ type Flag =
     | Zw
     | Zimbabwe
 
-namespace Semantic.Elements.ObjectApi
-type FlagOptions = {
-      ///An element type to render as. Defaull "<i>"
-      ``as`` : string
-      className : string
-      name : Semantic.Elements.Flags.Flag
-  }
-open Fable.Helpers
-[<RequireQualifiedAccess>]
-module Flag =
-  
-  let dft = {
-      name = Semantic.Utils.typedNull<Semantic.Elements.Flags.Flag>
-      ``as`` = Semantic.Utils.typedNull<string>
-      className = Semantic.Utils.typedNull<string>
-  }
-
-  let flag (props: FlagOptions) =
-     React.ofImport "Flag" "semantic-ui-react" (Fable.Core.JsInterop.toPlainJsObj props) []
-
-namespace Semantic.Elements.ListApi
+namespace Semantic.Elements.Api
 open Fable.Core
+open Fable.Helpers.React
 
 [<RequireQualifiedAccess>]
 module Flag =
-  type FlagOptions = 
+  type Options = 
   | As of string
   | ClassName of string
   | Name of Semantic.Elements.Flags.Flag
-  
-  let private parseFlagOption (r:Semantic.Elements.ObjectApi.FlagOptions) opt =
-    match opt with
-    | As s -> { r with ``as`` = s }
-    | ClassName s -> { r with className = s}
-    | Name n -> {r with name = n }
-
-  let flag (props : FlagOptions list ) =
-    Semantic.Elements.ObjectApi.Flag.flag (List.fold parseFlagOption Semantic.Elements.ObjectApi.Flag.dft props) 
+       ///Other React props
+    | Props of Fable.Helpers.React.Props.IHTMLProp list
+    with interface Fable.Helpers.React.Props.IHTMLProp
+  let flag (props : Options list ) =
+       let p = props |> List.fold ( fun s x -> match x with 
+                                                | Props x -> s @ x 
+                                                | a -> (a :> Fable.Helpers.React.Props.IHTMLProp ) :: s  ) []
+       ofImport "Flag" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p) []

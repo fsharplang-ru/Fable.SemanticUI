@@ -3,15 +3,19 @@ open Elmish
 open Elmish.React
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
-open Semantic.Elements.ListApi
+open Semantic.Elements.Api
 open Fable.Core
 open Semantic.Elements
+open Fable.Import
+// open Semantic.Elements.ObjectApi
 
 
 type Counter = int
 type Model = Counter option
 type Msg = | Increment| Decrement
-let init () : Model * Cmd<Msg> = Some 42, Cmd.none
+let init () : Model * Cmd<Msg> = 
+//    JS.setInterval ( fun () -> JS.console.clear () ) 15000 |> ignore
+   Some 43, Cmd.none
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     let model' =
         match model,  msg with
@@ -23,34 +27,40 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
 let showObjApiButton strn onCLick = 
              Button.button [
                     Button.OnClick  onCLick
-                    Button.IsToggle true
-                    Button.Animated Fade 
-                    Button.IsPrimary  true ] 
+                    Button.Option.Toggle true
+                    Button.IsAnimated true 
+                    Button.Option.Primary true ] 
                     [ 
-                        Button.content [  Button.Hidden  true  ] [
+                        Button.content [  Button.Content.Hidden  true  ] [
                                              str "-1"
                                          ]
-                        Button.content [ Button.Visible  true ] [
+                        Button.content [ Button.Content.Visible  true ] [
                                              str strn
                                          ]
                     ]                                          
 
 
 let showListApiButton strn onClick  = 
-       Button.buttonAsLink 
+       Button.button
                      [ Button.OnClick onClick
-                       Button.IsNegative true ] 
+                       Button.Option.Negative true ] 
                      [ 
                          str "Click list api"
                      ]
 
 let view (model : Model) (dispatch : Msg -> unit) =
     div [] [  
-            Container.container [ Container.TextAlign Semantic.Center ] [
+            Container.container [ Container.TextAlign Semantic.Center
+                                  Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("asasad") ) ] ] [
               h1 [] [ str "Semanic UI + Fable " ]
+              Divider.divider [ Divider.Horizontal true ] [
+                  str "From "
+                  Flag.flag [ Flag.Name Flags.Russia ]
+                  str "with love"
+              ] 
               p  [] [ str "Press buttons to manipulate counter:" ]
               Button.group [] [ showObjApiButton "Decrement!" (fun _ ->   dispatch Decrement)
-                                Button.Or  [ Button.Text  <| (match model with | Some x -> string x | None -> "Loading...") ]
+                                Button.or'  [ Button.Or.Text  <| (match model with | Some x -> string x | None -> "Loading...") ]
                                 showListApiButton "=" (fun _ -> dispatch Increment)
                                              ]
             ]
