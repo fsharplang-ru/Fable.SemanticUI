@@ -69,12 +69,16 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                ] [  ] ]
                           p [] [
                               Input.input' [ Input.IsAction true ] [
-                                  Button.button [] [ str "asas" ]
-                                  Button.button [] [ str "asas" ]
-                                  Button.button [] [ str "asas" ]
+                                  Button.button [ Button.Icon Icons.Rub ] [ ]
+                                  Button.button [ Button.Icon Icons.Usd ] [ ]
+                                  Button.button [ Button.Icon Icons.Eur ] [ ]
 
-                              ]
+                              ] ]
+                          p [] [
+                              Input.input' [ 
+                                  Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
                           ]
+
     ]
 
 

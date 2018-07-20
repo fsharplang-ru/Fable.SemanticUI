@@ -9,8 +9,9 @@ open Fable.Helpers
 [<RequireQualifiedAccessAttribute>]
 module Input =
   [<StringEnum>]
-  type Position = 
-      | Left
+  type Position = | Left
+  [<StringEnum>]
+  type LabelPostion = Left | Right
   type ActionType = | [<CompiledNameAttribute "action">] ActionPlaceholder of obj with interface IHTMLProp
   type Options =
       | [<CompiledName "action">]IsAction of bool
@@ -25,14 +26,16 @@ module Input =
       ///An Input can take the width of its container.
       | Fluid of bool 
       ///  ?? TODO check is this need
-      | IsIcon of bool
+      | [<CompiledName "icon">]IsIcon of bool
       | Icon of Semantic.Elements.Icons.IIcon
       | IconPosition of Position
       | Input of bool
       ///An Input can be formatted to appear on dark backgrounds.
       | Inverted of bool
+      | [<CompiledName "label">]LabelText of string
+      | Label of Fable.Import.React.ReactElement
       /// A labeled button can format a Label or Icon to appear on the left or right.
-    //   | LabelPosition of LabelPostion
+      | LabelPosition of LabelPostion
       /// A button can show a loading indicator.
       | Loading of bool 
       ///A button can hint towards a negative consequence.
@@ -65,5 +68,10 @@ module Input =
                                                 | Props x -> s @ x 
                                                 | Action lst -> (( lst |> JsInterop.keyValueList CaseRules.LowerFirst |> ActionType.ActionPlaceholder  ) :> IHTMLProp) :: s
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
-        let inpt = React.input  [ ]
-        Fable.Helpers.React.ofImport "Input" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)   ( inpt :: s)
+        let exists = List.exists (function | IsAction true -> true | _ -> false) props
+        let s = if exists then  
+                    let inpt = React.input  [ ]
+                    ( inpt :: s)
+                else 
+                    s
+        Fable.Helpers.React.ofImport "Input" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  s 
