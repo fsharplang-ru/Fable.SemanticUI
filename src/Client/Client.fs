@@ -53,7 +53,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           Container.TextAlign Semantic.Center
                           Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("asasad") ) ] ]  
                         [
-                          Header.header [ Header.Size Header.Huge] 
+                          Header.header [ Header.Size <| Header.Huge] 
                                         [ str "Semanic UI + Fable" ]
                           Divider.divider [ Divider.Horizontal true ] [
                               str "From "

@@ -19,7 +19,9 @@ module Header =
     | Props of Fable.Helpers.React.Props.IHTMLProp list
     with interface Fable.Helpers.React.Props.IHTMLProp
 
+  [<StringEnum>]
   type Attached = | Top | Bottom
+  [<StringEnum>]
   type Size = Tiny | Small | Medium | Large | Huge
   type Options = 
   | As of string
