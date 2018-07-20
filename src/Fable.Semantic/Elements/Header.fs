@@ -33,7 +33,7 @@ module Header =
   | Floated of bool
   | Icon of bool
   | Inverted of bool
-  | Sizo of Size
+  | Size of Size
   | Sub of bool
   | TextAlign of Semantic.TextAlignments
   ///Other React props

@@ -3,8 +3,10 @@ open Elmish
 open Elmish.React
 open Fable.Helpers.React
 open Semantic.Elements.Api
+open Semantic.Elements
 open Fable.Core
 open Fable.Import
+open Fable.Helpers.React.Props
 // open Semantic.Elements.ObjectApi
 
 
@@ -51,7 +53,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           Container.TextAlign Semantic.Center
                           Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("asasad") ) ] ]  
                         [
-                          Header.header [ Size Header.Huge] 
+                          Header.header [ Header.Size Header.Huge] 
                                         [ str "Semanic UI + Fable" ]
                           Divider.divider [ Divider.Horizontal true ] [
                               str "From "
