@@ -12,6 +12,7 @@
     <Compile Include="Elements/Divider.fs" />
     <Compile Include="Elements/Flags.fs" />
     <Compile Include="Elements/Header.fs" />
+    <Compile Include="Elements/Image.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

@@ -53,7 +53,7 @@ module Icon =
         let p = props |> List.fold ( fun s q -> match q with 
                                                     | Options.Props x -> s @ x 
                                                     | a -> (a :> IHTMLProp ) :: s  ) [] 
-        Fable.Helpers.React.ofImport "Icon" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
+        Fable.Helpers.React.ofImport "Icon" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p) []
 
   let group (props: Group.Options list) =
         let p = props |> List.fold ( fun s q -> match q with 
