@@ -26,7 +26,7 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
 let view (model : Model) (dispatch : Msg -> unit) =
     Container.container [ 
                           Container.TextAlign Semantic.Center
-                          Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("asasad") ) ] ]  
+                          Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("Hello!") ) ] ]  
                         [
                           Header.header [ Header.Size <| Header.Huge] 
                                         [ str "Semanic UI + Fable" ]
@@ -34,7 +34,8 @@ let view (model : Model) (dispatch : Msg -> unit) =
                               str "From "
                               Flag.flag [ Flag.Name Flags.Russia ]
                               str "with love"  ] 
-                          p  [] [ str "Press buttons to manipulate counter:" ]
+                          p  [] [ str "Press buttons to manipulate counter:"
+                                  Icon.icon [ Icon.Name Icons.ArrowUp ] ]
                           Button.group [] [ Button.button [
                                                 Button.OnClick  (fun _ -> dispatch Decrement)
                                                 Button.Toggle true
@@ -64,7 +65,16 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                  ]
                                              ]
                           p [] [ Button.button [ Button.Text "lol"
+                                                 Button.Icon Icons.Percent
                                                ] [  ] ]
+                          p [] [
+                              Input.input' [ Input.IsAction true ] [
+                                  Button.button [] [ str "asas" ]
+                                  Button.button [] [ str "asas" ]
+                                  Button.button [] [ str "asas" ]
+
+                              ]
+                          ]
     ]
 
 

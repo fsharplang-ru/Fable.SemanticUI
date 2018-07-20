@@ -5,13 +5,13 @@ open Fable.Core
 open Fable
 open Fable.Helpers.React.Props
 open System
-
+open Fable.Helpers
 [<RequireQualifiedAccessAttribute>]
 module Input =
   [<StringEnum>]
   type Position = 
       | Left
-  type ActionType = | Action of obj with interface IHTMLProp
+  type ActionType = | [<CompiledNameAttribute "action">] ActionPlaceholder of obj with interface IHTMLProp
   type Options =
       | [<CompiledName "action">]IsAction of bool
       | Action of Button.Options list
@@ -60,9 +60,10 @@ module Input =
       | Props of IHTMLProp list
       with interface IHTMLProp
 
-  let input (props: Options list ) =
+  let input' (props: Options list )  s =
         let p = props |> List.fold ( fun s x -> match x with 
                                                 | Props x -> s @ x 
-                                                | Action lst -> (( lst |> JsInterop.toPlainJsObj |> ActionType.Action  ) :> IHTMLProp) :: s
+                                                | Action lst -> (( lst |> JsInterop.keyValueList CaseRules.LowerFirst |> ActionType.ActionPlaceholder  ) :> IHTMLProp) :: s
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
-        Fable.Helpers.React.ofImport "Input" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
+        let inpt = React.input  [ ]
+        Fable.Helpers.React.ofImport "Input" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)   ( inpt :: s)

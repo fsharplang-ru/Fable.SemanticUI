@@ -51,7 +51,7 @@ module Button =
             ///Groups can take the width of its container.
             | Fluid of bool  
             ///  ?? TODO check if this needed
-            | Icon of bool           
+            | [<CompiledName "icon">] IsIcon of bool           
             ///Groups can be formatted to appear on dark backgrounds.
             | Inverted of bool          
             ///Groups can hint towards a negative consequence.

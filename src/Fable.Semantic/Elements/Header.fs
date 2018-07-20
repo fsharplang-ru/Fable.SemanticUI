@@ -33,7 +33,8 @@ module Header =
   | Disabled of bool
   | Dividing of bool
   | Floated of bool
-  | Icon of bool
+  | [<CompiledNameAttribute "icon">]IsIcon of bool
+  | Icon of Semantic.Elements.Icons.IIcon
   | Inverted of bool
   | Size of Size
   | Sub of bool
