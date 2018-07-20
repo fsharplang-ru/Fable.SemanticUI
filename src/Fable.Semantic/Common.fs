@@ -5,6 +5,11 @@ type ICollor =
   interface
   end
 
+[<Erase>]
+type CutomColr =
+  | CustomColor of string
+   with interface ICollor
+
 [<StringEnum>]
 type Floats = | Left | Right
 [<StringEnum>]

@@ -5,6 +5,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Common.fs" />
+    <Compile Include="Elements/Icons.fs" />
+    <Compile Include="Elements/Icon.fs" />
     <Compile Include="Elements/Container.fs" />
     <Compile Include="Elements/Button.fs" />
     <Compile Include="Elements/Divider.fs" />
