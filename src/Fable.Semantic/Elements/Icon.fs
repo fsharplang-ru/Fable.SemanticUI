@@ -1,9 +1,17 @@
 namespace Semantic.Elements.Api
 
 open Fable.Helpers.React.Props
+open System.Drawing
 [<RequireQualifiedAccessAttribute>]
 module Icon = 
   open Fable.Core
+  module Group = 
+    type Options =
+      | As of string
+      | ClassName of string
+      | Size of Semantic.Sizes
+      | Props of IHTMLProp list
+      with interface IHTMLProp
 
   [<StringEnum>]
   type Rotated =
@@ -46,5 +54,11 @@ module Icon =
                                                     | Options.Props x -> s @ x 
                                                     | a -> (a :> IHTMLProp ) :: s  ) [] 
         Fable.Helpers.React.ofImport "Icon" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
+
+  let group (props: Group.Options list) =
+        let p = props |> List.fold ( fun s q -> match q with 
+                                                    | Group.Props x -> s @ x 
+                                                    | a -> (a :> IHTMLProp ) :: s  ) [] 
+        Fable.Helpers.React.ofImport "Icon.Group" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
       
 
