@@ -7,6 +7,7 @@ open Semantic.Elements
 open Fable.Core
 open Fable.Import
 open Fable.Helpers.React.Props
+open System.ComponentModel
 
 
 type Counter = int
@@ -36,34 +37,45 @@ let view (model : Model) (dispatch : Msg -> unit) =
                               str "with love"  ] 
                           p  [] [ str "Press buttons to manipulate counter:"
                                   Icon.icon [ Icon.Name Icons.ArrowUp ] ]
-                          Button.group [] [ Button.button [
-                                                Button.OnClick  (fun _ -> dispatch Decrement)
-                                                Button.Toggle true
-                                                Button.IsAnimated true 
-                                                Button.Primary true ] 
-                                                [ 
-                                                    Button.content [  Button.Content.Hidden  true  ] [
-                                                                         str "-1"
-                                                                     ]
-                                                    Button.content [ Button.Content.Visible  true ] [
-                                                                         str "Decrement"
-                                                                     ]
-                                            ]
-                                            Button.or'  [ Button.Or.Text  <| (match model with | Some x -> string x | None -> "Loading...")
-                                                          Button.Or.Props [ OnClick ( fun _ ->  Fable.Import.Browser.window.alert ( model |> string ) ) ]  ]
-                                            Button.button
-                                                 [ Button.OnClick (fun _ -> dispatch Increment )
-                                                   Button.Animated Button.Fade
-                                                   Button.Negative true ] 
-                                                 [ 
-                                                     Button.content [ Button.Content.Hidden true ] [
-                                                         str "+1"
+                          p [] [
+                                Button.group [] [ 
+                                                Button.button [
+                                                            Button.OnClick  (fun _ -> dispatch Decrement)
+                                                            Button.Toggle true
+                                                            Button.IsAnimated true 
+                                                            Button.Primary true ] 
+                                                            [ 
+                                                                Button.content [  Button.Content.Hidden  true  ] [
+                                                                                     str "-1"
+                                                                                 ]
+                                                                Button.content [ Button.Content.Visible  true ] [
+                                                                                     str "Decrement"
+                                                                                 ]
+                                                            ]
+                                                Button.or'  [ Button.Or.Text  <| (match model with | Some x -> string x | None -> "Loading...")
+                                                              Button.Or.Props [ OnClick ( fun _ ->  Fable.Import.Browser.window.alert ( model |> string ) ) ]  ]
+                                                Button.button
+                                                     [ Button.OnClick (fun _ -> dispatch Increment )
+                                                       Button.Animated Button.Fade
+                                                       Button.Negative true ] 
+                                                     [ 
+                                                         Button.content [ Button.Content.Hidden true ] [
+                                                             str "+1"
+                                                         ]
+                                                         Button.content [ Button.Content.Visible true ] [
+                                                            str "Increment"
+                                                         ]
                                                      ]
-                                                     Button.content [ Button.Content.Visible true ] [
-                                                        str "Increment"
-                                                     ]
-                                                 ]
                                              ]
+                                  ]
+                          
+                          p [  ] [
+                              Image.image [ Image.Centered true 
+                                            Image.VerticalAlign Semantic.Middle
+                                            Image.Size Semantic.Small
+                                            Image.Href "https://react.semantic-ui.com/introduction"
+                                            Image.Src "https://react.semantic-ui.com/logo.png" ]
+                          ]
                           p [] [ Button.button [ Button.Text "lol"
                                                  Button.Icon Icons.Percent
                                                ] [  ] ]
