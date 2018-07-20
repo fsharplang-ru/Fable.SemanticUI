@@ -3,6 +3,7 @@ namespace Semantic.Elements.Api
 open Fable.Core
 open Fable.Helpers.React.Props
 open System.Drawing
+open Fable.Import.React
 
 [<RequireQualifiedAccessAttribute>]
 module Image = 
@@ -27,6 +28,7 @@ module Image =
    | Hidden of bool
    | Href of string
    | Inline of bool
+   | Label of ReactElement
    | Rounded of bool
    | Size of Semantic.Sizes
    | Spaced of Spaced

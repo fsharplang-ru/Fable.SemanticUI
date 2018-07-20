@@ -6,6 +6,7 @@ open Fable
 open Fable.Helpers.React.Props
 open System
 open Fable.Helpers
+open Fable.Import.React
 [<RequireQualifiedAccessAttribute>]
 module Input =
   [<StringEnum>]
@@ -15,7 +16,7 @@ module Input =
   type ActionType = | [<CompiledNameAttribute "action">] ActionPlaceholder of obj with interface IHTMLProp
   type Options =
       | [<CompiledName "action">]IsAction of bool
-      | Action of Button.Options list
+      | Action of ReactElement
       | ActionPosition of Position
       ///An element type to render as f.e. 'div', 'a', etc.
       | As  of string
@@ -34,39 +35,29 @@ module Input =
       | Inverted of bool
       | [<CompiledName "label">]LabelText of string
       | Label of Fable.Import.React.ReactElement
-      /// A labeled button can format a Label or Icon to appear on the left or right.
+      ///A Label can appear outside an Input on the left or right.
       | LabelPosition of LabelPostion
-      /// A button can show a loading indicator.
+      ///An Icon Input field can show that it is currently loading data.
       | Loading of bool 
-      ///A button can hint towards a negative consequence.
-      | Negative of bool
       ///Called after user's click. 
       /// OnClick ( fun (event, data) -> .. ) 
       /// event - React's original SyntheticEvent.
       /// data - All props.
-      | OnClick of  (( React.SyntheticEvent * obj) -> unit)
-      ///A button can hint towards a positive consequence.
-      | Positive of bool 
-      //A button can be formatted to show different levels of emphasis.
-      | Primary of bool 
-      ///The role of the HTML element. default : 'button'
-      | Role of string
-      ///A button can be formatted to show different levels of emphasis.
-      | Secondary of bool 
-      ///A button can have different sizes.
+      | OnChange of  (( React.SyntheticEvent * obj) -> unit)
+      ///An Input can vary in size.
       | Size of Semantic.Sizes
       ///A button can receive focus.
       | TabIndex of int
-      ///A button can be formatted to toggle on and off.
-      | Toggle of bool
+      | Transparent of bool
+      | Type of string
        ///Other React props
       | Props of IHTMLProp list
       with interface IHTMLProp
 
-  let input' (props: Options list )  s =
+  let input (props: Options list )  s =
         let p = props |> List.fold ( fun s x -> match x with 
                                                 | Props x -> s @ x 
-                                                | Action lst -> (( lst |> JsInterop.keyValueList CaseRules.LowerFirst |> ActionType.ActionPlaceholder  ) :> IHTMLProp) :: s
+                                                // | Action lst -> (( lst |> JsInterop.keyValueList CaseRules.LowerFirst |> ActionType.ActionPlaceholder  ) :> IHTMLProp) :: s
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
         let exists = List.exists (function | IsAction true -> true | _ -> false) props
         let s = if exists then  

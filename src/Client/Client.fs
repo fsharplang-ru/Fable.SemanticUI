@@ -5,9 +5,7 @@ open Fable.Helpers.React
 open Semantic.Elements.Api
 open Semantic.Elements
 open Fable.Core
-open Fable.Import
 open Fable.Helpers.React.Props
-open System.ComponentModel
 
 
 type Counter = int
@@ -79,15 +77,16 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           p [] [ Button.button [ Button.Text "lol"
                                                  Button.Icon Icons.Percent
                                                ] [  ] ]
+                          p [] [ Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] [] ]
                           p [] [
-                              Input.input' [ Input.IsAction true ] [
+                              Input.input [ Input.IsAction true ] [
                                   Button.button [ Button.Icon Icons.Rub ] [ ]
                                   Button.button [ Button.Icon Icons.Usd ] [ ]
                                   Button.button [ Button.Icon Icons.Eur ] [ ]
 
                               ] ]
                           p [] [
-                              Input.input' [ 
+                              Input.input [ 
                                   Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
                           ]
 
