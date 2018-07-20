@@ -85,21 +85,23 @@ module Button =
           | Props of IHTMLProp list
           with interface IHTMLProp
     
-    type Option =
+    type Options =
       ///A button can show it is currently the active user selection.
       | Active of bool
       ///An element type to render as f.e. 'div', 'a', etc.
       | As  of string
       ///A button can animate to show hidden content. Use this for default animation
-      | IsAnimated of bool
+      | [<CompiledName "animated">]IsAnimated of bool
       ///A button can animate to show hidden content. Choose animation
       | Animated of Animate 
       ///A button can be attached to other content.
       | Attached of Attached
       ///A basic button is less pronounced.
       | Basic of bool
+      | [<CompiledNameAttribute "content">]Text of string
       ///A button can be circular.
       | Circular of bool
+      | ClassName of string
       ///A button can have different colors
       | Color of Semantic.ICollor
       ///A button can reduce its padding to fit into tighter spaces.
@@ -111,7 +113,8 @@ module Button =
       ///	A button can take the width of its container.
       | Fluid of bool 
       ///  ?? TODO check is this need
-      | Icon of bool
+      | [<CompiledNameAttribute "icon">]IsIcon of bool
+      | Icon of Semantic.Elements.Icons.IIcon
       ///A button can be formatted to appear on dark backgrounds.
       | Inverted of bool
       /// A labeled button can format a Label or Icon to appear on the left or right.
@@ -145,12 +148,10 @@ module Button =
 
     type internal IsAnim = | Animated of bool with interface IHTMLProp
     type internal Anim = | Animated of Animate with interface IHTMLProp
-    let button (props: Option list)  = 
+    let button (props: Options list)  = 
         // Button.button (List.fold parseButtonOption Button.buttonDft props) 
         let p = props |> List.fold ( fun s x -> match x with 
                                                 | Props x -> s @ x 
-                                                | IsAnimated b -> (IsAnim.Animated b) :> IHTMLProp :: s
-                                                | Option.Animated a -> (Anim.Animated a) :> IHTMLProp :: s
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
         ofImport "Button" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
 

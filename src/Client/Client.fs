@@ -53,7 +53,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                             Button.button
                                                  [ Button.OnClick (fun _ -> dispatch Increment )
                                                    Button.Animated Button.Fade
-                                                   Button.Option.Negative true ] 
+                                                   Button.Negative true ] 
                                                  [ 
                                                      Button.content [ Button.Content.Hidden true ] [
                                                          str "+1"
@@ -63,6 +63,8 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                      ]
                                                  ]
                                              ]
+                          p [] [ Button.button [ Button.Text "lol"
+                                               ] [  ] ]
     ]
 
 
