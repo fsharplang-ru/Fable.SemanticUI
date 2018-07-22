@@ -17,7 +17,7 @@ module Label =
                                                 | Detail.Props x -> s @ x 
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
     Fable.Helpers.React.ofImport "Label.Detail" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  
-  [<StringEnum>]
+  [<StringEnum>] 
   type Attached = 
   | Top
   | Bottom
