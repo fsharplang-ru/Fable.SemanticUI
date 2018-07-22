@@ -5,6 +5,7 @@ open Fable.Helpers.React.Props
 open Fable.Import.React
 [<RequireQualifiedAccessAttribute>]
 module Label =
+    
   module Detail = 
     type Options = 
     | As of string 
@@ -22,8 +23,11 @@ module Label =
   | [<CompiledName "bottom left">]BottomLeft
 
   [<StringEnum>]
-  type Corner = | Left | Right
-
+  type Corner = | [<CompiledName "left">]LeftCorner | [<CompiledName "right">] RightCorner
+  [<StringEnum>]
+  type Pointing = | Above | Below | Left | Right 
+  [<StringEnum>]
+  type Ribbon = | [<CompiledName "right">]RightRibbon 
   type Options = 
   | Active of bool
   | As of string
@@ -39,5 +43,32 @@ module Label =
   | Horizontal of bool
   | Icon of Semantic.Elements.Icons.IIcon
   | [<CompiledName "image">]IsImage of bool
-  | Image of ReactElement //TODO check
-  
+  | Image of ReactElement //TODO create rec options
+  | OnClick of (SyntheticEvent * obj -> unit)
+  | OnRemove of (SyntheticEvent * obj -> unit)
+  | [<CompiledName "pointing">]IsPointing of bool
+  | Pointing of Pointing 
+  | RemoveIcon of Semantic.Elements.Icons.IIcon
+  | [<CompiledName "ribbon" >]IsRibbon of bool 
+  | Ribbon of Ribbon
+  | Size of Semantic.Sizes
+  | Tag of bool
+  | Props of IHTMLProp list
+  with interface IHTMLProp
+
+  let label (props: Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Label" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  
+  module Group =
+    type Options =
+    | As of string
+    | Circular of string 
+    | ClassName of string
+    | Content of Semantic.Elements.Api.Label.Options list 
+    | Color of Semantic.Collor 
+    | Size of Semantic.Sizes
+    | Tag of bool
+    | Props of IHTMLProp list
+    with interface IHTMLProp

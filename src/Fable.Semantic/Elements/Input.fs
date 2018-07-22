@@ -57,12 +57,5 @@ module Input =
   let input (props: Options list )  s =
         let p = props |> List.fold ( fun s x -> match x with 
                                                 | Props x -> s @ x 
-                                                // | Action lst -> (( lst |> JsInterop.keyValueList CaseRules.LowerFirst |> ActionType.ActionPlaceholder  ) :> IHTMLProp) :: s
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
-        let exists = List.exists (function | IsAction true -> true | _ -> false) props
-        let s = if exists then  
-                    let inpt = React.input  [ ]
-                    ( inpt :: s)
-                else 
-                    s
         Fable.Helpers.React.ofImport "Input" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  s 

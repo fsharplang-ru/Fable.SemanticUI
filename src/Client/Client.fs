@@ -78,6 +78,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                  Button.Icon Icons.Percent
                                                ] [  ] ]
                           p [] [ Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] [] ]
+                          p [] [ Label.label [] [ str "ama label"]  ]
                           p [] [
                               Input.input [ Input.IsAction true ] [
                                   Button.button [ Button.Icon Icons.Rub ] [ ]
