@@ -12,7 +12,11 @@ module Label =
     | ClassName of string
     | Props of IHTMLProp list
     with interface IHTMLProp
-
+  let label (props: Detail.Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | Detail.Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Label.Detail" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  
   [<StringEnum>]
   type Attached = 
   | Top
@@ -25,7 +29,7 @@ module Label =
   [<StringEnum>]
   type Corner = | [<CompiledName "left">]LeftCorner | [<CompiledName "right">] RightCorner
   [<StringEnum>]
-  type Pointing = | Above | Below | Left | Right 
+  type Pointing = | AbovePointing | BelowPointing | LeftPointing | RightPointing 
   [<StringEnum>]
   type Ribbon = | [<CompiledName "right">]RightRibbon 
   type Options = 
@@ -72,3 +76,8 @@ module Label =
     | Tag of bool
     | Props of IHTMLProp list
     with interface IHTMLProp
+  let label (props: Group.Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | Group.Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Label.Group" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  

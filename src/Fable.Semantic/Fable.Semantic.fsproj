@@ -15,6 +15,7 @@
     <Compile Include="Elements/Image.fs" />
     <Compile Include="Elements/Input.fs" />
     <Compile Include="Elements/Label.fs" />
+    <Compile Include="Elements/Loader.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
