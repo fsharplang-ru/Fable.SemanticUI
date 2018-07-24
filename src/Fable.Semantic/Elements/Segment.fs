@@ -1,6 +1,7 @@
 namespace Semantic.Elements.Api
 open Fable.Core
 open Fable.Helpers.React.Props
+open Fable.Import.React
 
 [<RequireQualifiedAccess>]
 module Segment =
@@ -37,12 +38,30 @@ module Segment =
   | Stacked of bool
   | Tertiary of bool
   | Vertical of bool
-  | TextAligin of TextAligin
+  | TextAlign of TextAligin
   | Props of IHTMLProp list
   with interface IHTMLProp
-
+  
+  module Group =
+    type Options =
+    | As of string
+    | ClassName of string
+    | Compact of bool
+    | Horizontal of bool
+    | Piled of bool
+    | Raised of bool
+    | Size of Semantic.Sizes
+    | Stacked of bool
+    | Props of IHTMLProp list
+    with interface IHTMLProp
   let segment (props: Options list) = 
     let p = props |> List.fold ( fun s x -> match x with 
                                                 | Props x -> s @ x 
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
     Fable.Helpers.React.ofImport "Segment" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  
+
+  let group (props: Group.Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | Group.Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Segment.Group" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  

@@ -27,8 +27,8 @@ module Reveal =
 
    let reveal (props: Options list) =
          let p = props |> List.fold ( fun s x -> match x with 
-                                                | Props x -> s @ x 
-                                                | a -> (a :> IHTMLProp ) :: s  ) []
+                                                 | Props x -> s @ x 
+                                                 | a -> (a :> IHTMLProp ) :: s  ) []
          Fable.Helpers.React.ofImport "Reveal" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  
 
    module Content = 
@@ -41,6 +41,6 @@ module Reveal =
      with interface IHTMLProp 
    let content (props : Content.Options  list) = 
          let p = props |> List.fold ( fun s x -> match x with 
-                                                | Content.Props x -> s @ x 
-                                                | a -> (a :> IHTMLProp ) :: s  ) []
+                                                 | Content.Props x -> s @ x 
+                                                 | a -> (a :> IHTMLProp ) :: s  ) []
          Fable.Helpers.React.ofImport "Reveal.Content" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  

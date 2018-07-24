@@ -72,11 +72,22 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                   ]
                           
                           Segment.segment [ Segment.Basic true ] [
-                              Image.image [ Image.Centered true 
-                                            Image.VerticalAlign Semantic.Middle
-                                            Image.Size Semantic.Small
-                                            Image.Href "https://react.semantic-ui.com/introduction"
-                                            Image.Src "https://react.semantic-ui.com/logo.png" ]
+                              Reveal.reveal [ Reveal.Animated Reveal.Fade ] [
+                                  Reveal.content [ Reveal.Content.Visible true ]
+                                                 [ Image.image [    //Image.Centered true 
+                                                                    //Image.VerticalAlign Semantic.Middle
+                                                                    Image.Size Semantic.Small
+                                                                    // Image.Href "https://react.semantic-ui.com/introduction"
+                                                                    Image.Src  "https://react.semantic-ui.com/logo.png" ] ]
+                                  Reveal.content [ Reveal.Content.Hidden true ] [
+                                                   Image.image[ //Image.Centered true
+                                                                //Image.VerticalAlign Semantic.Middle
+                                                                Image.Size Semantic.Small
+                                                                // Image.Href "http://fable.io/" 
+                                                                Image.Src "http://fable.io/img/shared/fable_logo.png"]
+                                  ]
+                              ]
+
                           ]
                           Segment.segment [ Segment.Basic true ] [ Button.button [ Button.Text "lol"
                                                                                    Button.Icon Icons.Percent] 
