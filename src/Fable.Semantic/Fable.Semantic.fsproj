@@ -17,6 +17,9 @@
     <Compile Include="Elements/Label.fs" />
     <Compile Include="Elements/Loader.fs" />
     <Compile Include="Elements/List.fs" />
+    <Compile Include="Elements/Rail.fs" />
+    <Compile Include="Elements/Reveal.fs" />
+    <Compile Include="Elements/Segment.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

@@ -6,6 +6,7 @@ open Semantic.Elements.Api
 open Semantic.Elements
 open Fable.Core
 open Fable.Helpers.React.Props
+open Semantic.Elements.Icons
 
 
 type Counter = int
@@ -32,10 +33,13 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           Divider.divider [ Divider.Horizontal true ] [
                               str "From "
                               Flag.flag [ Flag.Name Flags.Russia ]
-                              str "with love"  ] 
-                          p  [] [ str "Press buttons to manipulate counter:"
+                              str "with "
+                              Icon.icon [ Icon.Name Icons.Heart
+                                          Icon.Color Semantic.Red ]  ] 
+                          Segment.segment [ Segment.Basic true ] [ 
+                                  str "Press buttons to manipulate counter:"
                                   Icon.icon [ Icon.Name Icons.ArrowUp ] ]
-                          p [] [
+                          Segment.segment [ Segment.Basic true ] [
                                 Button.group [] [ 
                                                 Button.button [
                                                             Button.OnClick  (fun _ -> dispatch Decrement)
@@ -67,26 +71,26 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                              ]
                                   ]
                           
-                          p [  ] [
+                          Segment.segment [ Segment.Basic true ] [
                               Image.image [ Image.Centered true 
                                             Image.VerticalAlign Semantic.Middle
                                             Image.Size Semantic.Small
                                             Image.Href "https://react.semantic-ui.com/introduction"
                                             Image.Src "https://react.semantic-ui.com/logo.png" ]
                           ]
-                          p [] [ Button.button [ Button.Text "lol"
-                                                 Button.Icon Icons.Percent
-                                               ] [  ] ]
-                          p [] [ Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] [] ]
-                          p [] [ Label.label [] [ str "ama label"]  ]
-                          p [] [
+                          Segment.segment [ Segment.Basic true ] [ Button.button [ Button.Text "lol"
+                                                                                   Button.Icon Icons.Percent] 
+                                                                                 [  ] ]
+                          Segment.segment [ Segment.Basic true ] [ Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] [] ]
+                          Segment.segment [ Segment.Basic true ] [ Label.label [] [ str "ama label"]  ]
+                          Segment.segment [ Segment.Basic true ] [
                               Input.input [ Input.IsAction true ] [
                                   Button.button [ Button.Icon Icons.Rub ] [ ]
                                   Button.button [ Button.Icon Icons.Usd ] [ ]
                                   Button.button [ Button.Icon Icons.Eur ] [ ]
 
                               ] ]
-                          p [] [
+                          Segment.segment [ Segment.Basic true ] [
                               Input.input [ 
                                   Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
                           ]

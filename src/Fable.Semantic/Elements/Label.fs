@@ -1,4 +1,4 @@
-namespace Semantic.Elements.Api
+namespace rec Semantic.Elements.Api 
 
 open Fable.Core
 open Fable.Helpers.React.Props
@@ -13,7 +13,7 @@ module Label =
     | ClassName of string
     | Props of IHTMLProp list
     with interface IHTMLProp
-  let label (props: Detail.Options list) = 
+  let detail (props: Detail.Options list) = 
     let p = props |> List.fold ( fun s x -> match x with 
                                                 | Detail.Props x -> s @ x 
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
@@ -40,7 +40,7 @@ module Label =
   | Basic of bool
   | Circular of bool
   | ClassName of string
-  | Color of Semantic.Collor
+  | Color of Semantic.Color
   | Corner of Corner
   | Detail of Detail.Options list
   | Empty of ReactElement
@@ -71,13 +71,13 @@ module Label =
     | As of string
     | Circular of string 
     | ClassName of string
-    | Content of Label.Options list 
-    | Color of Semantic.Collor 
+    | Content of Semantic.Elements.Api.Label.Options list 
+    | Color of Semantic.Color 
     | Size of Semantic.Sizes
     | Tag of bool
     | Props of IHTMLProp list
     with interface IHTMLProp
-  let label (props: Group.Options list) = 
+  let group (props: Group.Options list) = 
     let p = props |> List.fold ( fun s x -> match x with 
                                                 | Group.Props x -> s @ x 
                                                 | a -> (a :> IHTMLProp ) :: s  ) []

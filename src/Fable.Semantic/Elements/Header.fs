@@ -29,7 +29,7 @@ module Header =
   | Attached of Attached
   | Block of bool
   | ClassName of bool
-  | Color of Semantic.Collor
+  | Color of Semantic.Color
   | Disabled of bool
   | Dividing of bool
   | Floated of bool

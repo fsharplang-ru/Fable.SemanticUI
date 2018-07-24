@@ -27,7 +27,7 @@ module Icon =
    ///Additional classes.
    | ClassName of string
    ///Color of the icon.
-   | Color of Semantic.Collor
+   | Color of Semantic.Color
    ///Icons can display a smaller corner icon.
    | Coner of bool
    /// Show that icon is inactive
