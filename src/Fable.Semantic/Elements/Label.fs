@@ -3,6 +3,7 @@ namespace Semantic.Elements.Api
 open Fable.Core
 open Fable.Helpers.React.Props
 open Fable.Import.React
+
 [<RequireQualifiedAccessAttribute>]
 module Label =
     
@@ -70,7 +71,7 @@ module Label =
     | As of string
     | Circular of string 
     | ClassName of string
-    | Content of Semantic.Elements.Api.Label.Options list 
+    | Content of Label.Options list 
     | Color of Semantic.Collor 
     | Size of Semantic.Sizes
     | Tag of bool

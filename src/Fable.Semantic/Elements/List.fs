@@ -24,7 +24,6 @@ module List =
      type Options = 
      | As of string
      | ClassName of string
-    //  | Description of string
      | Floated of Floated
      | VerticalAlign of VerticalAlignments
      | Props of IHTMLProp list
