@@ -7,6 +7,7 @@ open Semantic.Elements
 open Fable.Core
 open Fable.Helpers.React.Props
 open Semantic.Elements.Icons
+open Fable.Import.React
 
 
 type Counter = int
@@ -72,9 +73,13 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                   ]
                           
                           Segment.segment [ Segment.Basic true ] [
-                              Reveal.reveal [ Reveal.Animated Reveal.Fade ] [
+                              Reveal.reveal [ Reveal.Animated Reveal.Fade
+                                              Reveal.Props [  
+                                                  Style [ Width "14%" ; Margin "0 auto" ]
+                                                ] ] [
                                   Reveal.content [ Reveal.Content.Visible true ]
-                                                 [ Image.image [    //Image.Centered true 
+                                                 [
+                                                   Image.image [    //Image.Centered true 
                                                                     //Image.VerticalAlign Semantic.Middle
                                                                     Image.Size Semantic.Small
                                                                     // Image.Href "https://react.semantic-ui.com/introduction"
@@ -94,6 +99,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                                                  [  ] ]
                           Segment.segment [ Segment.Basic true ] [ Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] [] ]
                           Segment.segment [ Segment.Basic true ] [ Label.label [] [ str "ama label"]  ]
+                          Segment.segment [ Segment.Basic true ] [ Label.label [] [ str "Placeholde For DropDownList"]  ]
                           Segment.segment [ Segment.Basic true ] [
                               Input.input [ Input.IsAction true ] [
                                   Button.button [ Button.Icon Icons.Rub ] [ ]
@@ -105,8 +111,20 @@ let view (model : Model) (dispatch : Msg -> unit) =
                               Input.input [ 
                                   Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
                           ]
+                          Segment.segment [ Segment.Basic true ] [
+                              Step.group [
+                                //   Step.Group.Items [
+                                //       [ 
+                                //         //   Step.Icon Icons.Truck
+                                //         //   Step.Title [ Semantic.Elements.Api.Step.Title.Options.ContentEl <| str "Shipping" ]
+                                //         //   Step.Description [ Step.Description.Options.ContentEl <| str "Choose your shipping options"  ]
+                                //       ]
+                                //   ]
+                               ] []
+                          ]
+                        ] 
 
-    ]
+    
 
 
 #if DEBUG

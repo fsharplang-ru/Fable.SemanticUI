@@ -28,7 +28,7 @@ module Button =
           ///Initially visible, hidden on hover.
          | Visible of bool
                 ///Other React props
-          | Props of IHTMLProp list
+         | Props of IHTMLProp list
           with interface IHTMLProp
     
     module Group =
