@@ -110,7 +110,7 @@ module Button =
       | Disabled of bool
       ///A button can be aligned to the left or right of its container.
       | Floated  of Semantic.Floats
-      ///	A button can take the width of its container.
+      ///A button can take the width of its container.
       | Fluid of bool 
       ///  ?? TODO check is this need
       | [<CompiledNameAttribute "icon">]IsIcon of bool
