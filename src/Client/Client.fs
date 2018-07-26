@@ -26,7 +26,7 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     model', Cmd.none
 
 
-let view (model : Model) (dispatch : Msg -> unit) =
+let view (model : Model) (dispatch : Msg -> unit) = 
     Container.container [ 
                           Container.TextAlign Semantic.CenterText
                           Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("Hello!") ) ] ]  
@@ -121,14 +121,19 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                       ]
                                       Grid.row [
                                         //   Grid.Row.Centered true
-                                          Grid.Row.Columns Semantic.N2
+                                          Grid.Row.Columns Semantic.N1
                                       ] [
                                           Grid.column [] [
                                                Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
 
                                           ]
+                                        ]
+                                      Grid.row [
+                                           Grid.Row.Columns Semantic.N1
+                                       ] [
                                           Grid.column [] [
                                                Input.input [ Input.IsAction true ] [
+                                                   input []
                                                    Button.button [ Button.Icon Icons.Rub ] [ ]
                                                    Button.button [ Button.Icon Icons.Usd ] [ ]
                                                    Button.button [ Button.Icon Icons.Eur ] [ ]
