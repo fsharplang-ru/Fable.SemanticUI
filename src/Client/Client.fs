@@ -4,25 +4,29 @@ open Elmish.React
 open Fable.Helpers.React
 open Semantic.Elements.Api
 open Semantic.Elements
+open Fable.Import.Browser
 open Semantic.Collections.Api
 open Fable.Core
 open Fable.Helpers.React.Props
 open Semantic.Elements.Icons
 open Fable.Import.React
 open System.ComponentModel
+open Fable.Import
 
 
 type Counter = int
 type Model = {
     counter : Counter option
     activeMenuItem : string
+    text : string
 } with static member init () = {
                                   counter = Some 42
                                   activeMenuItem = ""
+                                  text = "and React"
                                }
 
 
-type Msg = | Increment| Decrement  | SetActive of string
+type Msg = | Increment| Decrement  | SetActive of string | NewText of string
 let init () : Model * Cmd<Msg> = 
     Model.init () , Cmd.none
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
@@ -31,6 +35,7 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
         | { counter = Some x}, Increment -> { model with counter = Some (x + 1) }
         | { counter = Some x} , Decrement -> { model with counter = Some (x - 1) }
         | _ , SetActive x -> { model with activeMenuItem = x }
+        | _, NewText x -> { model with text = x }
         | _ ->  model
     model', Cmd.none
 
@@ -68,7 +73,13 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("Hello!") ) ] ]  
                         [
                           Header.header [ Header.Size <| Header.Huge] 
-                                        [ str "Semanic UI + Fable" ]
+                                        [
+                                            Header.content [] [ 
+                                                str "Semanic UI + Fable" 
+                                                Header.subheader [] [
+                                                    str model.text
+                                                 ] ]
+                                        ]
                           Divider.divider [ Divider.Horizontal true ] [
                               str "From "
                               Flag.flag [ Flag.Name Flags.Russia ]
@@ -77,7 +88,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                           Icon.Color Semantic.Red ]  ] 
                           Segment.segment [ Segment.Basic true ] [ 
                                   str "Press buttons to manipulate counter:"
-                                  Icon.icon [ Icon.Name Icons.ArrowUp ] ]
+                                  Icon.icon [ Icon.Name Icons.ArrowDown ] ]
                           Segment.segment [ Segment.Basic true ] [
                                 Button.group [] [ 
                                                 Button.button [
@@ -140,11 +151,11 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                             //   ]
                                                       ]
                                                     Grid.column [] [
-                                                                       Button.button [ Button.Text "lol"
-                                                                                       Button.Icon Icons.Percent] []
+                                                                       Button.button [ Button.Text (model.text + " " + model.activeMenuItem)
+                                                                                       Button.Icon Icons.React] []
                                                     ]
                                                     Grid.column [] [
-                                                                    Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] []
+                                                                    Input.input [ Input.Action <| Button.button [ Button.Text model.text ] []  ] []
                                                     ]
                                       ]
                                       Grid.row [
@@ -152,15 +163,15 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                           Grid.Row.Columns Semantic.N2
                                       ] [
                                           Grid.column [] [ Label.label [] [ str "ama label"] ]
-                                          Grid.column [] [ Label.label [] [ str "Placeholde For DropDownList"] ]
-                                          
+                                          Grid.column [] [ Label.label [] [ str "Placeholder For DropDownList"] ]
                                       ]
                                       Grid.row [
                                         //   Grid.Row.Centered true
                                           Grid.Row.Columns Semantic.N1
                                       ] [
                                           Grid.column [] [
-                                               Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
+                                               Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> window.alert( model.text ) ) ] [ str model.text ]   
+                                                             Input.OnChange ( fun xxx -> printfn "%A" xxx) ] []
 
                                           ]
                                         ]
