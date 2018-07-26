@@ -13,20 +13,56 @@ open System.ComponentModel
 
 
 type Counter = int
-type Model = Counter option
-type Msg = | Increment| Decrement
+type Model = {
+    counter : Counter option
+    activeMenuItem : string
+} with static member init () = {
+                                  counter = Some 42
+                                  activeMenuItem = ""
+                               }
+
+
+type Msg = | Increment| Decrement  | SetActive of string
 let init () : Model * Cmd<Msg> = 
-   Some 42, Cmd.none
+    Model.init () , Cmd.none
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     let model' =
         match model,  msg with
-        | Some x, Increment -> Some (x + 1)
-        | Some x, Decrement -> Some (x - 1)
-        | _ -> None
+        | { counter = Some x}, Increment -> { model with counter = Some (x + 1) }
+        | { counter = Some x} , Decrement -> { model with counter = Some (x - 1) }
+        | _ , SetActive x -> { model with activeMenuItem = x }
+        | _ ->  model
     model', Cmd.none
 
 
+
 let view (model : Model) (dispatch : Msg -> unit) = 
+  div [] [
+    Menu.menu [ 
+        Menu.Inverted true
+     ] [
+        Menu.item [ 
+            Menu.Item.Header true
+        ] [ str "React.SemanticUI + Fable" ]
+
+        Menu.item [ 
+            Menu.Item.Active (model.activeMenuItem = "one")
+            Menu.Item.OnClick (fun _ -> dispatch (SetActive "one"))
+         ] [str "One"  ]
+        Menu.item [ 
+            Menu.Item.Active (model.activeMenuItem = "two")
+            Menu.Item.OnClick (fun _ -> dispatch (SetActive "two"))
+         ] [ str "Two"  ]
+        Menu.item [ 
+            Menu.Item.Active (model.activeMenuItem = "three")
+            Menu.Item.OnClick (fun _ -> dispatch (SetActive "three"))
+         ] [ str "Three" ]
+        Menu.item [ 
+            Menu.Item.Active (model.activeMenuItem = "four")
+            Menu.Item.OnClick (fun _ -> dispatch (SetActive "four"))
+            Menu.Item.Icon Semantic.Elements.Icons.Idea
+         ] [ ]
+    ]
     Container.container [ 
                           Container.TextAlign Semantic.CenterText
                           Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("Hello!") ) ] ]  
@@ -57,7 +93,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                                                      str "Decrement"
                                                                                  ]
                                                             ]
-                                                Button.or'  [ Button.Or.Text  <| (match model with | Some x -> string x | None -> "Loading...")
+                                                Button.or'  [ Button.Or.Text  <| (match model.counter with | Some x -> string x | None -> "Loading...")
                                                               Button.Or.Props [ OnClick ( fun _ ->  Fable.Import.Browser.window.alert ( model |> string ) ) ]  ]
                                                 Button.button
                                                      [ Button.OnClick (fun _ -> dispatch Increment )
@@ -155,7 +191,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                         //   ]
                         ] 
 
-    
+  ]
 
 
 #if DEBUG

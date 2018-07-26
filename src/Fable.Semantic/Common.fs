@@ -14,11 +14,14 @@ type CutomColr =
 type Relaxed = | Very
 
 [<StringEnum>]
+type Attached = | [<CompiledName "top">] Top | [<CompiledName "bottom">] Bottom
+
+[<StringEnum>]
 type Floats = | Left | Right
 [<StringEnum>]
 type TextAlignments = | [<CompiledName "left">]LeftText |[<CompiledName "center">] CenterText |[<CompiledName "right">] RightText | [<CompiledName "Justified">]JustifiedText
 [<StringEnum>]
-type VerticalAlignments = | Top | Middle | Bottom
+type VerticalAlignments = | [<CompiledName "top">] TopAlign | [<CompiledName "middle">] MiddleAlign | [<CompiledName "bottom">] BottomAlign
 [<StringEnum>]
 type Sizes =   | Mini | Tiny | Small | Medium | Large | Big | Huge | Massive
 [<StringEnum>]
