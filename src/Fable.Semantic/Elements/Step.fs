@@ -88,6 +88,7 @@ module Step =
       | Stackable of Stackable
       | Unstackable of bool
       | Vertical of bool
+      | Width of Semantic.Widths
       | Props of IHTMLProp list
       with interface IHTMLProp
 

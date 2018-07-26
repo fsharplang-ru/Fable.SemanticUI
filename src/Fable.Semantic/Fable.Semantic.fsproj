@@ -21,6 +21,7 @@
     <Compile Include="Elements/Reveal.fs" />
     <Compile Include="Elements/Segment.fs" />
     <Compile Include="Elements/Step.fs" />
+    <Compile Include="Collections/Grid.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

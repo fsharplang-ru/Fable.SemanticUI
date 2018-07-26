@@ -6,10 +6,7 @@ open Semantic
 
 [<RequireQualifiedAccess>]
 module List =
-   [<StringEnum>]
-   type Floated = | Left | Right
-   [<StringEnum>]
-   type Relaxed = | Very
+
    module Item =
      type Options =
      | As of string
@@ -24,7 +21,7 @@ module List =
      type Options = 
      | As of string
      | ClassName of string
-     | Floated of Floated
+     | Floated of Semantic.Floats
      | VerticalAlign of VerticalAlignments
      | Props of IHTMLProp list
      with interface IHTMLProp
@@ -62,7 +59,7 @@ module List =
    | ClassName of string
    | Content of obj ///TODO
    | Divided of bool
-   | Floated of Floated 
+   | Floated of Semantic.Floats 
    | Horizontal of bool
    | Inverted of bool
    | Items of Item.Options

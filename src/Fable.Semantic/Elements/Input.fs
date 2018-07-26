@@ -11,8 +11,6 @@ open Fable.Import.React
 module Input =
   [<StringEnum>]
   type Position = | Left
-  [<StringEnum>]
-  type LabelPostion = Left | Right
   type ActionType = | [<CompiledNameAttribute "action">] ActionPlaceholder of obj with interface IHTMLProp
   type Options =
       | [<CompiledName "action">]IsAction of bool
@@ -36,7 +34,7 @@ module Input =
       | [<CompiledName "label">]LabelText of string
       | Label of Fable.Import.React.ReactElement
       ///A Label can appear outside an Input on the left or right.
-      | LabelPosition of LabelPostion
+      | LabelPosition of Semantic.Floats
       ///An Icon Input field can show that it is currently loading data.
       | Loading of bool 
       ///Called after user's click. 

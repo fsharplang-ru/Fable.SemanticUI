@@ -6,8 +6,6 @@ open Fable.Helpers.React.Props
 [<RequireQualifiedAccess>]
 module Rail = 
   [<StringEnum>]
-  type Position = | Left | Right
-  [<StringEnum>]
   type Close = | Very
 
   type Options =
@@ -18,7 +16,7 @@ module Rail =
    | [<CompiledName "close">]IsClose of bool
    | Dividing of bool
    | Internal of bool
-   | Position of Position
+   | Position of Semantic.Floats
    | Size of Semantic.Sizes
    | Props of IHTMLProp list
    with interface IHTMLProp

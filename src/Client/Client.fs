@@ -4,6 +4,7 @@ open Elmish.React
 open Fable.Helpers.React
 open Semantic.Elements.Api
 open Semantic.Elements
+open Semantic.Collections.Api
 open Fable.Core
 open Fable.Helpers.React.Props
 open Semantic.Elements.Icons
@@ -26,7 +27,7 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
 
 let view (model : Model) (dispatch : Msg -> unit) =
     Container.container [ 
-                          Container.TextAlign Semantic.Center
+                          Container.TextAlign Semantic.CenterText
                           Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("Hello!") ) ] ]  
                         [
                           Header.header [ Header.Size <| Header.Huge] 
@@ -71,57 +72,74 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                      ]
                                              ]
                                   ]
+                          Grid.grid [ Grid.Columns Semantic.Three 
+                                    //   Grid.IsDivided true
+                                    //   Grid.Relaxed Semantic.Very
+                                    ] [
+                                      Grid.row [ 
+                                               Grid.Row.Centered true
+                                       ] [
+                                                    Grid.column [] 
+                                                          [
+                                                              Reveal.reveal [ Reveal.Animated Reveal.Fade ] 
+                                                                     [
+                                                                          Reveal.content [ Reveal.Content.Visible true ]
+                                                                                         [
+                                                                                           Image.image [    //Image.Centered true 
+                                                                                                            //Image.VerticalAlign Semantic.Middle
+                                                                                                            Image.Size Semantic.Small
+                                                                                                            // Image.Href "https://react.semantic-ui.com/introduction"
+                                                                                                            Image.Src  "https://react.semantic-ui.com/logo.png" ] ]
+                                                                          Reveal.content [ Reveal.Content.Hidden true ] [
+                                                                                           Image.image[ //Image.Centered true
+                                                                                                        //Image.VerticalAlign Semantic.Middle
+                                                                                                        Image.Size Semantic.Small
+                                                                                                        // Image.Href "http://fable.io/" 
+                                                                                                        Image.Src "http://fable.io/img/shared/fable_logo.png"]
+                                                                          ]
+                                                                     ]
+                                                      ]
+                                                    Grid.column [] [
+                                                                       Button.button [ Button.Text "lol"
+                                                                                       Button.Icon Icons.Percent] []
+                                                    ]
+                                                    Grid.column [] [
+                                                                    Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] []
+                                                    ]
+                                      ]
+                                      Grid.row [
+                                          Grid.Row.Centered true
+                                      ] [
+                                          Grid.column [] [ Label.label [] [ str "ama label"] ]
+                                          Grid.column [] [ Label.label [] [ str "Placeholde For DropDownList"] ]
+                                          Grid.column [] [
+                                              Input.input [ Input.IsAction true ] [
+                                                  Button.button [ Button.Icon Icons.Rub ] [ ]
+                                                  Button.button [ Button.Icon Icons.Usd ] [ ]
+                                                  Button.button [ Button.Icon Icons.Eur ] [ ]
+                                              ]
+                                          ]
+                                      ]
+                                      Grid.row [
+                                          Grid.Row.Centered true
+                                      ] [
+                                          Grid.column [] [
+                                               Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
+                                          ] 
+                                      ]
+                          ]
                           
-                          Segment.segment [ Segment.Basic true ] [
-                              Reveal.reveal [ Reveal.Animated Reveal.Fade
-                                              Reveal.Props [  
-                                                  Style [ Width "14%" ; Margin "0 auto" ]
-                                                ] ] [
-                                  Reveal.content [ Reveal.Content.Visible true ]
-                                                 [
-                                                   Image.image [    //Image.Centered true 
-                                                                    //Image.VerticalAlign Semantic.Middle
-                                                                    Image.Size Semantic.Small
-                                                                    // Image.Href "https://react.semantic-ui.com/introduction"
-                                                                    Image.Src  "https://react.semantic-ui.com/logo.png" ] ]
-                                  Reveal.content [ Reveal.Content.Hidden true ] [
-                                                   Image.image[ //Image.Centered true
-                                                                //Image.VerticalAlign Semantic.Middle
-                                                                Image.Size Semantic.Small
-                                                                // Image.Href "http://fable.io/" 
-                                                                Image.Src "http://fable.io/img/shared/fable_logo.png"]
-                                  ]
-                              ]
-
-                          ]
-                          Segment.segment [ Segment.Basic true ] [ Button.button [ Button.Text "lol"
-                                                                                   Button.Icon Icons.Percent] 
-                                                                                 [  ] ]
-                          Segment.segment [ Segment.Basic true ] [ Input.input [ Input.Action <| Button.button [ Button.Text "Some text" ] []  ] [] ]
-                          Segment.segment [ Segment.Basic true ] [ Label.label [] [ str "ama label"]  ]
-                          Segment.segment [ Segment.Basic true ] [ Label.label [] [ str "Placeholde For DropDownList"]  ]
-                          Segment.segment [ Segment.Basic true ] [
-                              Input.input [ Input.IsAction true ] [
-                                  Button.button [ Button.Icon Icons.Rub ] [ ]
-                                  Button.button [ Button.Icon Icons.Usd ] [ ]
-                                  Button.button [ Button.Icon Icons.Eur ] [ ]
-
-                              ] ]
-                          Segment.segment [ Segment.Basic true ] [
-                              Input.input [ 
-                                  Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
-                          ]
-                          Segment.segment [ Segment.Basic true ] [
-                              Step.group [
-                                //   Step.Group.Items [
-                                //       [ 
-                                //         //   Step.Icon Icons.Truck
-                                //         //   Step.Title [ Semantic.Elements.Api.Step.Title.Options.ContentEl <| str "Shipping" ]
-                                //         //   Step.Description [ Step.Description.Options.ContentEl <| str "Choose your shipping options"  ]
-                                //       ]
-                                //   ]
-                               ] []
-                          ]
+                        //   Segment.segment [ Segment.Basic true ] [
+                        //       Step.group [
+                        //         //   Step.Group.Items [
+                        //         //       [ 
+                        //         //         //   Step.Icon Icons.Truck
+                        //         //         //   Step.Title [ Semantic.Elements.Api.Step.Title.Options.ContentEl <| str "Shipping" ]
+                        //         //         //   Step.Description [ Step.Description.Options.ContentEl <| str "Choose your shipping options"  ]
+                        //         //       ]
+                        //         //   ]
+                        //        ] []
+                        //   ]
                         ] 
 
     

@@ -6,8 +6,6 @@ open Fable.Import.React
 [<RequireQualifiedAccess>]
 module Segment =
   [<StringEnum>]
-  type Floated = | Left | Right
-  [<StringEnum>]
   type Attached = | Top | Bottom
   [<StringEnum>]
   type Padded = | Very
@@ -26,7 +24,7 @@ module Segment =
   | Color of Semantic.Color
   | Compact of bool
   | Disabled of bool
-  | Floated of Floated
+  | Floated of Semantic.Floats
   | Inverted of bool
   | Loading of bool
   | [<CompiledName "padded">]IsPadded of bool

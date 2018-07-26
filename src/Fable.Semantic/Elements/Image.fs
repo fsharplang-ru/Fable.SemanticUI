@@ -13,8 +13,6 @@ module Image =
       | ClassName of string
       | Size of Semantic.Sizes
 
-  [<StringEnumAttribute>]
-  type Spaced = | Left | Right
   type Options = 
    ///An element type to render as. Default <img>
    | As of string
@@ -31,7 +29,7 @@ module Image =
    | Label of ReactElement
    | Rounded of bool
    | Size of Semantic.Sizes
-   | Spaced of Spaced
+   | Spaced of Semantic.Floats
    | IsSpaced of bool
    | Src of string
    | Ui of bool 
