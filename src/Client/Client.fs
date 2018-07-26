@@ -9,6 +9,7 @@ open Fable.Core
 open Fable.Helpers.React.Props
 open Semantic.Elements.Icons
 open Fable.Import.React
+open System.ComponentModel
 
 
 type Counter = int
@@ -72,32 +73,35 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                      ]
                                              ]
                                   ]
-                          Grid.grid [ Grid.Columns Semantic.Three 
+                          Grid.grid [ 
                                     //   Grid.IsDivided true
                                     //   Grid.Relaxed Semantic.Very
                                     ] [
                                       Grid.row [ 
-                                               Grid.Row.Centered true
+                                            //    Grid.Row.Centered true
+                                               Grid.Row.Columns Semantic.N3
                                        ] [
                                                     Grid.column [] 
                                                           [
-                                                              Reveal.reveal [ Reveal.Animated Reveal.Fade ] 
-                                                                     [
-                                                                          Reveal.content [ Reveal.Content.Visible true ]
-                                                                                         [
-                                                                                           Image.image [    //Image.Centered true 
+                                                            //   Container.container [] [
+                                                                  Reveal.reveal [ Reveal.Animated Reveal.Fade ] 
+                                                                         [
+                                                                              Reveal.content [ Reveal.Content.Visible true ]
+                                                                                             [
+                                                                                               Image.image [    //Image.Centered true 
+                                                                                                                //Image.VerticalAlign Semantic.Middle
+                                                                                                                Image.Size Semantic.Tiny
+                                                                                                                // Image.Href "https://react.semantic-ui.com/introduction"
+                                                                                                                Image.Src  "https://react.semantic-ui.com/logo.png" ] ]
+                                                                              Reveal.content [ Reveal.Content.Hidden true ] [
+                                                                                               Image.image[ //Image.Centered true
                                                                                                             //Image.VerticalAlign Semantic.Middle
-                                                                                                            Image.Size Semantic.Small
-                                                                                                            // Image.Href "https://react.semantic-ui.com/introduction"
-                                                                                                            Image.Src  "https://react.semantic-ui.com/logo.png" ] ]
-                                                                          Reveal.content [ Reveal.Content.Hidden true ] [
-                                                                                           Image.image[ //Image.Centered true
-                                                                                                        //Image.VerticalAlign Semantic.Middle
-                                                                                                        Image.Size Semantic.Small
-                                                                                                        // Image.Href "http://fable.io/" 
-                                                                                                        Image.Src "http://fable.io/img/shared/fable_logo.png"]
-                                                                          ]
-                                                                     ]
+                                                                                                            Image.Size Semantic.Tiny
+                                                                                                            // Image.Href "http://fable.io/" 
+                                                                                                            Image.Src "http://fable.io/img/shared/fable_logo.png"]
+                                                                              ]
+                                                                         ]
+                                                            //   ]
                                                       ]
                                                     Grid.column [] [
                                                                        Button.button [ Button.Text "lol"
@@ -108,23 +112,27 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                     ]
                                       ]
                                       Grid.row [
-                                          Grid.Row.Centered true
+                                        //   Grid.Row.Centered true
+                                          Grid.Row.Columns Semantic.N2
                                       ] [
                                           Grid.column [] [ Label.label [] [ str "ama label"] ]
                                           Grid.column [] [ Label.label [] [ str "Placeholde For DropDownList"] ]
-                                          Grid.column [] [
-                                              Input.input [ Input.IsAction true ] [
-                                                  Button.button [ Button.Icon Icons.Rub ] [ ]
-                                                  Button.button [ Button.Icon Icons.Usd ] [ ]
-                                                  Button.button [ Button.Icon Icons.Eur ] [ ]
-                                              ]
-                                          ]
+                                          
                                       ]
                                       Grid.row [
-                                          Grid.Row.Centered true
+                                        //   Grid.Row.Centered true
+                                          Grid.Row.Columns Semantic.N2
                                       ] [
                                           Grid.column [] [
                                                Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> printf "asas") ] [ str "sdsdds" ]   ] []
+
+                                          ]
+                                          Grid.column [] [
+                                               Input.input [ Input.IsAction true ] [
+                                                   Button.button [ Button.Icon Icons.Rub ] [ ]
+                                                   Button.button [ Button.Icon Icons.Usd ] [ ]
+                                                   Button.button [ Button.Icon Icons.Eur ] [ ]
+                                               ]
                                           ] 
                                       ]
                           ]

@@ -21,6 +21,7 @@ type TextAlignments = | [<CompiledName "left">]LeftText |[<CompiledName "center"
 type VerticalAlignments = | Top | Middle | Bottom
 [<StringEnum>]
 type Sizes =   | Mini | Tiny | Small | Medium | Large | Big | Huge | Massive
+[<StringEnum>]
 type Widths = 
     | [<CompiledName "1">] N1
     | [<CompiledName "2">] N2
