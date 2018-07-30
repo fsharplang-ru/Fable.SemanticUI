@@ -11,6 +11,8 @@ open Fable.Import.React
 module Input =
   [<StringEnum>]
   type Position = | Left
+  [<Pojo>]
+  type Val = { value : string }
   type ActionType = | [<CompiledNameAttribute "action">] ActionPlaceholder of obj with interface IHTMLProp
   type Options =
       | [<CompiledName "action">]IsAction of bool
@@ -41,7 +43,7 @@ module Input =
       /// OnClick ( fun (event, data) -> .. ) 
       /// event - React's original SyntheticEvent.
       /// data - All props.
-      | OnChange of  (( React.SyntheticEvent * obj) -> unit)
+      | OnChange of  ( React.SyntheticEvent *  Val -> unit)
       ///An Input can vary in size.
       | Size of Semantic.Sizes
       ///A button can receive focus.
@@ -56,5 +58,6 @@ module Input =
   let input (props: Options list )  s =
         let p = props |> List.fold ( fun s x -> match x with 
                                                 | Props x -> s @ x 
+                                                // | OnChange x -> 
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
         Fable.Helpers.React.ofImport "Input" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)  s 

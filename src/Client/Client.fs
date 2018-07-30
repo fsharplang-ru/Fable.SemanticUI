@@ -4,14 +4,8 @@ open Elmish.React
 open Fable.Helpers.React
 open Semantic.Elements.Api
 open Semantic.Elements
-open Fable.Import.Browser
 open Semantic.Collections.Api
-open Fable.Core
 open Fable.Helpers.React.Props
-open Semantic.Elements.Icons
-open Fable.Import.React
-open System.ComponentModel
-open Fable.Import
 
 
 type Counter = int
@@ -170,8 +164,8 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                           Grid.Row.Columns Semantic.N1
                                       ] [
                                           Grid.column [] [
-                                               Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> window.alert( model.text ) ) ] [ str model.text ]   
-                                                             Input.OnChange ( fun xxx -> printfn "%A" xxx) ] []
+                                               Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> Fable.Import.Browser.window.alert( model.text ) ) ] [ str model.text ]   
+                                                             Input.OnChange ( fun s  -> Fable.Import.Browser.console.log(s); "lol" |> NewText |> dispatch ) ] []
 
                                           ]
                                         ]
@@ -211,6 +205,21 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                       str "Messages"
                                                   ]
                                               ] 
+                                          ]
+                                          Grid.column [] [
+                                             Breadcrumb.breadcrumb [] [
+                                                  Breadcrumb.section [ Breadcrumb.Section.Link true ] [
+                                                      str "Fst"
+                                                  ]
+                                                  Breadcrumb.divider [ Breadcrumb.Divider.Icon Semantic.Elements.Icons.ArrowRight ] 
+                                                  Breadcrumb.section [ Breadcrumb.Section.Link true ] [
+                                                      str "Snd"
+                                                  ]
+                                                  Breadcrumb.divider [ Breadcrumb.Divider.Icon Semantic.Elements.Icons.ArrowRight ] 
+                                                  Breadcrumb.section [ Breadcrumb.Section.Active true ] [
+                                                      str "Thrd"
+                                                  ]
+                                              ]
                                           ]
                                       ]
                           ]

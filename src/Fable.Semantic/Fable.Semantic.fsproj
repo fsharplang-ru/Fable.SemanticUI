@@ -23,6 +23,7 @@
     <Compile Include="Elements/Step.fs" />
     <Compile Include="Collections/Grid.fs" />
     <Compile Include="Collections/Menu.fs" />
+    <Compile Include="Collections/Breadcrumb.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
