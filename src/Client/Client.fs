@@ -165,7 +165,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                       ] [
                                           Grid.column [] [
                                                Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> Fable.Import.Browser.window.alert( model.text ) ) ] [ str model.text ]   
-                                                             Input.OnChange ( fun s  -> Fable.Import.Browser.console.log(s); "lol" |> NewText |> dispatch ) ] []
+                                                             Input.OnChange ( fun s a  -> (match a.value with | null | "" -> "with React" | a  -> a) |> NewText |> dispatch ) ] []
 
                                           ]
                                         ]

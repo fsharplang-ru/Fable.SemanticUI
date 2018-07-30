@@ -43,7 +43,7 @@ module Input =
       /// OnClick ( fun (event, data) -> .. ) 
       /// event - React's original SyntheticEvent.
       /// data - All props.
-      | OnChange of  ( React.SyntheticEvent *  Val -> unit)
+      | OnChange of  (React.SyntheticEvent ->  Val -> unit)
       ///An Input can vary in size.
       | Size of Semantic.Sizes
       ///A button can receive focus.
