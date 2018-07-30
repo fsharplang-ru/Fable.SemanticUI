@@ -187,6 +187,32 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                ]
                                           ] 
                                       ]
+                                      Grid.row [
+                                          Grid.Row.Columns Semantic.N2
+                                      ] [
+                                          Grid.column [] [
+                                              Menu.menu [ Menu.Vertical true ] [
+                                                  Menu.item [] [
+                                                      Input.input [ Input.Placeholder "Search..." ] []
+                                                  ]
+                                                  Menu.item [] [
+                                                      str "Home"
+                                                      Menu.submenu [] [
+                                                          Menu.item [ Menu.Item.Name "Search" ] [ str "Search" ]
+                                                          Menu.item [ Menu.Item.Name "Add" ] [ str "Add"]
+                                                          Menu.item [ Menu.Item.Name "Remove" ] [ str "Remove"]
+                                                      ]
+                                                  ]
+                                                  Menu.item [ Menu.Item.Name "Browse"]  [
+                                                      Icon.icon [ Icon.Name Semantic.Elements.Icons.GridLayout ]
+                                                      str "Browse"
+                                                  ]
+                                                  Menu.item [ Menu.Item.Name "Messages" ] [
+                                                      str "Messages"
+                                                  ]
+                                              ] 
+                                          ]
+                                      ]
                           ]
                           
                         //   Segment.segment [ Segment.Basic true ] [

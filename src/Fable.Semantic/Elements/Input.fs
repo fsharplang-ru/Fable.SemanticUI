@@ -48,6 +48,7 @@ module Input =
       | TabIndex of int
       | Transparent of bool
       | Type of string
+      | Placeholder of string
        ///Other React props
       | Props of IHTMLProp list
       with interface IHTMLProp
