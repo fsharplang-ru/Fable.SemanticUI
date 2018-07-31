@@ -6,6 +6,8 @@ open Semantic.Elements.Api
 open Semantic.Elements
 open Semantic.Collections.Api
 open Fable.Helpers.React.Props
+open Fable.Import.React
+open Fable
 
 
 type Counter = int
@@ -13,14 +15,21 @@ type Model = {
     counter : Counter option
     activeMenuItem : string
     text : string
+    isMessageHidden : bool
 } with static member init () = {
                                   counter = Some 42
                                   activeMenuItem = ""
                                   text = "and React"
+                                  isMessageHidden = false
                                }
 
 
-type Msg = | Increment| Decrement  | SetActive of string | NewText of string
+type Msg = 
+ | Increment 
+ | Decrement  
+ | SetActive of string 
+ | NewText of string
+ | DismissMessage
 let init () : Model * Cmd<Msg> = 
     Model.init () , Cmd.none
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
@@ -30,11 +39,17 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
         | { counter = Some x} , Decrement -> { model with counter = Some (x - 1) }
         | _ , SetActive x -> { model with activeMenuItem = x }
         | _, NewText x -> { model with text = x }
+        | _ , DismissMessage -> { model with isMessageHidden = true }
         | _ ->  model
     model', Cmd.none
 
 
-
+let renderMesage model dispatch = 
+    if not model.isMessageHidden then 
+      Message.message [ Message.OnDismiss ( fun _ _ -> dispatch DismissMessage )]
+                      [ str "Welcome!" ]
+      |> Some
+    else None
 let view (model : Model) (dispatch : Msg -> unit) = 
   div [] [
     Menu.menu [ 
@@ -66,12 +81,13 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           Container.TextAlign Semantic.CenterText
                           Container.Props [ OnClick (fun _ -> Fable.Import.Browser.console.warn ("Hello!") ) ] ]  
                         [
+                          renderMesage model dispatch |> Option.defaultValue (str "")
                           Header.header [ Header.Size <| Header.Huge] 
                                         [
                                             Header.content [] [ 
                                                 a [ Href "http://react.semantic-ui.com/" ]  [ str  "React.Semanic UI + Fable" ]
                                                 Header.subheader [] [
-                                                    str model.text
+                                                    str "is awesome!"
                                                  ] ]
                                         ]
                           Divider.divider [ Divider.Horizontal true ] [
