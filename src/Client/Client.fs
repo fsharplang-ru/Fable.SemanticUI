@@ -69,7 +69,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           Header.header [ Header.Size <| Header.Huge] 
                                         [
                                             Header.content [] [ 
-                                                str "Semanic UI + Fable" 
+                                                a [ Href "http://react.semantic-ui.com/" ]  [ str  "React.Semanic UI + Fable" ]
                                                 Header.subheader [] [
                                                     str model.text
                                                  ] ]
