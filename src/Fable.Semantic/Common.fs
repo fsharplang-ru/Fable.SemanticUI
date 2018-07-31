@@ -24,6 +24,10 @@ type TextAlignments = | [<CompiledName "left">]LeftText |[<CompiledName "center"
 type VerticalAlignments = | [<CompiledName "top">] TopAlign | [<CompiledName "middle">] MiddleAlign | [<CompiledName "bottom">] BottomAlign
 [<StringEnum>]
 type Sizes =   | Mini | Tiny | Small | Medium | Large | Big | Huge | Massive
+
+type IWidths =
+  interface end
+
 [<StringEnum>]
 type Widths = 
     | [<CompiledName "1">] N1
@@ -58,6 +62,7 @@ type Widths =
     | Fourteen
     | Fifteen
     | Sixteen
+    with interface IWidths
 
 [<StringEnum>]
 type Color = 

@@ -119,13 +119,16 @@ module Form =
     Fable.Helpers.React.ofImport "Form.Select" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
 
   module Group =
+    [<StringEnum>]
+    type GroupWidth = | Equal
+       with interface Semantic.IWidths    
     type Options =
     | As of string
     | ClassName of string
-    | Grouped of obj //TODO Fields can show related choices.
-    | Inline of obj //TODO	Multiple fields may be inline in a row. 
+    | Grouped of bool 
+    | Inline of bool 
     | Unstackable of bool
-    | Widths of Semantic.Widths
+    | Widths of Semantic.IWidths
     | Props of IHTMLProp list
     with interface IHTMLProp
   let group (props: Group.Options list) = 
@@ -143,12 +146,12 @@ module Form =
     | Error of bool
     | Inline of bool
     | Label of ReactElement
-    | Requuired of bool
-    | Type of obj // TODO Passed to the control component (i.e. <input type='password' />)
+    | Required of bool
+    | Type of string // TODO Passed to the control component (i.e. <input type='password' />)
     | Widths of Semantic.Widths
     | Props of IHTMLProp list
     with interface IHTMLProp
-    
+
   let field (props: Field.Options list) = 
     let p = props |> List.fold ( fun s x -> match x with 
                                                 | Field.Props x -> s @ x 
