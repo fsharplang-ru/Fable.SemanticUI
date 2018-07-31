@@ -25,6 +25,7 @@
     <Compile Include="Collections/Menu.fs" />
     <Compile Include="Collections/Breadcrumb.fs" />
     <Compile Include="Collections/Form.fs" />
+    <Compile Include="Collections/Message.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
