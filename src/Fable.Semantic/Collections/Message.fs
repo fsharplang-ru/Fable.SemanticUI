@@ -34,3 +34,55 @@ module Message =
                                                 | Props x -> s @ x 
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
     Fable.Helpers.React.ofImport "Message" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
+  
+  module Content =
+    type Options =
+    | As of string
+    | ClassName of string
+    | Props of IHTMLProp list
+    with interface IHTMLProp
+
+  let content (props: Content.Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | Content.Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Message.Content" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
+
+  module Header =
+    type Options =
+    | As of string
+    | ClassName of string
+    | Props of IHTMLProp list
+    with interface IHTMLProp
+
+  let header (props: Header.Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | Header.Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Message.Header" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
+
+  module Item =
+    type Options =
+    | As of string
+    | ClassName of string
+    | Props of IHTMLProp list
+    with interface IHTMLProp
+
+  let item (props: Item.Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | Item.Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Message.Item" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
+
+  module List =
+    type Options =
+    | As of string
+    | ClassName of string
+    | Props of IHTMLProp list
+    with interface IHTMLProp
+
+  let list (props: List.Options list) = 
+    let p = props |> List.fold ( fun s x -> match x with 
+                                                | List.Props x -> s @ x 
+                                                | a -> (a :> IHTMLProp ) :: s  ) []
+    Fable.Helpers.React.ofImport "Message.List" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
