@@ -311,18 +311,6 @@ let view (model : Model) (dispatch : Msg -> unit) =
                               ] 
 
                           ]
-                          
-                        //   Segment.segment [ Segment.Basic true ] [
-                        //       Step.group [
-                        //         //   Step.Group.Items [
-                        //         //       [ 
-                        //         //         //   Step.Icon Icons.Truck
-                        //         //         //   Step.Title [ Semantic.Elements.Api.Step.Title.Options.ContentEl <| str "Shipping" ]
-                        //         //         //   Step.Description [ Step.Description.Options.ContentEl <| str "Choose your shipping options"  ]
-                        //         //       ]
-                        //         //   ]
-                        //        ] []
-                        //   ]
                         ] 
 
   ]

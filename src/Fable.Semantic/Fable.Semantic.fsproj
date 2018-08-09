@@ -27,6 +27,7 @@
     <Compile Include="Collections/Form.fs" />
     <Compile Include="Collections/Message.fs" />
     <Compile Include="Collections/Table.fs" />
+    <Compile Include="Behaviors/Visibility.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
