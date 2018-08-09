@@ -239,6 +239,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                           ]
                                       ]
                           ]
+                        //   Table.table [] []
                           
                         //   Segment.segment [ Segment.Basic true ] [
                         //       Step.group [
