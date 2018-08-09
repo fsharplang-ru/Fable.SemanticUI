@@ -165,7 +165,9 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                                                                        Button.Icon Icons.React] []
                                                     ]
                                                     Grid.column [] [
-                                                                    Input.input [ Input.Action <| Button.button [ Button.Text model.text ] []  ] []
+                                                                    Input.input [ 
+                                                                        Input.Placeholder "No reaction"
+                                                                        Input.Action <| Button.button [ Button.Text model.text ] []  ] []
                                                     ]
                                       ]
                                       Grid.row [
@@ -173,14 +175,15 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                           Grid.Row.Columns Semantic.N2
                                       ] [
                                           Grid.column [] [ Label.label [] [ str "ama label"] ]
-                                          Grid.column [] [ Label.label [] [ str "Placeholder For DropDownList"] ]
+                                          Grid.column [] [ Label.label [] [ str "Placeholder For DropDownList, TODO"] ]
                                       ]
                                       Grid.row [
                                         //   Grid.Row.Centered true
                                           Grid.Row.Columns Semantic.N1
                                       ] [
                                           Grid.column [] [
-                                               Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> Fable.Import.Browser.window.alert( model.text ) ) ] [ str model.text ]   
+                                               Input.input [ Input.Label <|  Button.button [  Button.OnClick (fun _ -> Fable.Import.Browser.window.alert( model.text ) ) ] [ str model.text ]  
+                                                             Input.Placeholder "Type here, its reactive!" 
                                                              Input.OnChange ( fun s a  -> (match a.value with | null | "" -> "with React" | a  -> a) |> NewText |> dispatch ) ] []
 
                                           ]
@@ -189,7 +192,8 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                            Grid.Row.Columns Semantic.N1
                                        ] [
                                           Grid.column [] [
-                                               Input.input [ Input.IsAction true ] [
+                                               Input.input [ Input.IsAction true
+                                                             Input.Placeholder "No reaction" ] [
                                                    input []
                                                    Button.button [ Button.Icon Icons.Rub ] [ ]
                                                    Button.button [ Button.Icon Icons.Usd ] [ ]
@@ -239,7 +243,74 @@ let view (model : Model) (dispatch : Msg -> unit) =
                                           ]
                                       ]
                           ]
-                        //   Table.table [] []
+                          Table.table [
+                              Table.Celled true
+                          ] [
+                              Table.header [] [
+                                  Table.headerCell [] [ str "Header"]
+                                  Table.headerCell [] [ str "Header"]
+                                  Table.headerCell [] [ str "Header"]
+                              ]
+                              Table.body [] [
+                                  Table.row [] [
+                                      Table.cell [] [
+                                          Label.label [ Label.IsRibbon true ] [ str "First" ]
+                                      ]
+                                      Table.cell [] [
+                                        str "Cell"
+                                      ]
+                                      Table.cell [] [
+                                        str "Cell"
+                                      ]
+                                  ]
+                                  Table.row [] [
+                                      Table.cell [] [
+                                          str "Cell"
+                                      ]
+                                      Table.cell [] [
+                                        str "Cell"
+                                      ]
+                                      Table.cell [] [
+                                        str "Cell"
+                                      ]
+                                  ]
+                                  Table.row [] [
+                                      Table.cell [] [
+                                          str "Cell"
+                                      ]
+                                      Table.cell [] [
+                                        str "Cell"
+                                      ]
+                                      Table.cell [] [
+                                        str "Cell"
+                                      ]
+                                  ]
+                              ]
+                              Table.footer [] [
+                                  Table.row [] [
+                                      Table.headerCell [ Table.HeaderCell.Props [ ColSpan 3. ]  ] [
+                                          Menu.menu [ Menu.Floated Menu.Right
+                                                      Menu.Pagination true ] [
+                                                          Menu.item [
+                                                              Menu.Item.As "a"
+                                                              Menu.Item.IsIcon true
+                                                          ] [
+                                                              Icon.icon [ Icon.Name Icons.ChevronLeft ]
+                                                          ]
+                                                          Menu.item [ Menu.Item.As "a" ] [ str "1" ]
+                                                          Menu.item [ Menu.Item.As "a" ] [ str "2" ]
+                                                          Menu.item [ Menu.Item.As "a" ] [ str "3" ]
+                                                          Menu.item [ Menu.Item.As "a" ] [ str "4" ]
+                                                          Menu.item [ Menu.Item.As "a"
+                                                                      Menu.Item.IsIcon true ] [ 
+                                                                          Icon.icon [ Icon.Name Icons.ChevronRight ]
+                                                           ]
+                                                      ]
+                                      ]
+                                  ]
+                              ] 
+
+                          ]
                           
                         //   Segment.segment [ Segment.Basic true ] [
                         //       Step.group [

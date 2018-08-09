@@ -112,7 +112,7 @@ module Table =
                                                 | a -> (a :> IHTMLProp ) :: s  ) []
     Fable.Helpers.React.ofImport "Table.Header" "semantic-ui-react" (JsInterop.keyValueList CaseRules.LowerFirst p)
   
-  module HeaderCell = 
+  module HeaderCell = //TODO inherit from Cell
    [<StringEnum>]
    type Sorted = | Ascending | Descending
    type Options =
