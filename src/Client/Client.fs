@@ -18,14 +18,14 @@ type Model = {
     text : string
     isMessageHidden : bool
     Visibility :  Semantic.Behaviors.Api.Visibility.Calculations option
-    StickyContext : Fable.Import.Browser.Element option
+    // StickyContext : Fable.Import.Browser.Element option
 } with static member Init () = {
                                   counter = Some 42
                                   activeMenuItem = ""
                                   text = "and React"
                                   isMessageHidden = false
-                                  Visibility = None
-                                  StickyContext = None
+                                  Visibility = None // Semantic.Behaviors.Api.Visibility.Calculations
+                                //   StickyContext = None
                                }
 
 
@@ -36,7 +36,7 @@ type Msg =
  | NewText of string
  | DismissMessage
  | OnVisibilityUpdate of Semantic.Behaviors.Api.Visibility.Calculations
- | SetStickyContext of Fable.Import.Browser.Element
+//  | SetStickyContext of Fable.Import.Browser.Element
 let init () : Model * Cmd<Msg> = 
     Model.Init () , Cmd.none
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
@@ -47,7 +47,7 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
         | _ , SetActive x -> { model with activeMenuItem = x }
         | _, NewText x -> { model with text = x }
         | _ , DismissMessage -> { model with isMessageHidden = true }
-        | _, SetStickyContext o -> { model with StickyContext = Some o }
+        // | _, SetStickyContext o -> { model with StickyContext = Some o }
         | _, OnVisibilityUpdate calc -> { model with Visibility = Some calc}
         | _ ->  model
     model', Cmd.none
@@ -60,7 +60,32 @@ let renderMesage model dispatch =
                       [ str "Welcome!" ]
       |> Some
     else None
+
+let generateRow name (value:obj) = 
+  Table.row [] [
+      Table.cell [] [
+          str name
+      ]
+      Table.cell [] [
+          str (value.ToString())
+      ]
+  ] 
+ 
+let generateRows:Semantic.Behaviors.Api.Visibility.Calculations option -> ReactElement list = function
+                   | None -> []
+                   | Some v -> [
+                          generateRow "direction" v.direction
+                          generateRow "pixelsPassed" (v.pixelsPassed.ToString() + "px")
+                          generateRow "percentagePassed" (v.percentagePassed * 100.0)
+                          generateRow "fits" v.fits
+                          generateRow "width" v.width
+                          generateRow "height" v.height
+                          generateRow "onScreen" v.onScreen
+                          generateRow "offScreen" v.offScreen
+                          generateRow "passing" v.passing ]
+
 let view (model : Model) (dispatch : Msg -> unit) = 
+  let mutable contextRef: Fable.Import.Browser.Element option = None
   div [] [
     Menu.menu [ 
         Menu.Inverted true
@@ -323,11 +348,7 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           ]
                 ]
     div [
-        // Ref ( fun e -> Fable.Import.Browser.console.log(e)
-        //                if model.StickyContext.IsNone then 
-        //                  SetStickyContext e |> dispatch
-        //                else 
-        //                  ())
+        Ref ( fun e -> contextRef <- Some e)
     ] [
         Grid.grid [] [
         Grid.row [ 
@@ -341,6 +362,26 @@ let view (model : Model) (dispatch : Msg -> unit) =
                 ]
             ]
             Grid.column [] [
+                Semantic.Modules.Api.Sticky.sticky [
+                    Semantic.Modules.Api.Sticky.Context contextRef
+                ] [
+                    Table.table [
+                        Table.Celled true
+                    ] [
+                        Table.header [] [
+                            Table.row [] [
+                                Table.headerCell [] [
+                                    str "Calculation"
+                                ]
+                                Table.headerCell [] [
+                                    str "Value"
+                                ]
+                            ]
+                        ]
+                        Table.body [] (generateRows model.Visibility)
+                        
+                    ]
+                ]
             ]
         ]
        ]

@@ -9,7 +9,7 @@ module Visibility =
   | [<CompiledName "down">] Down
   | [<CompiledName "up">] Up
   type Calculations = {
-      botomPassed : bool
+      bottomPassed : bool
       bottomVisible : bool
       direction : Direction
       fits : bool
