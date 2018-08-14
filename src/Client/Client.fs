@@ -8,6 +8,7 @@ open Semantic.Collections.Api
 open Fable.Helpers.React.Props
 open Fable.Import.React
 open Fable
+open Semantic
 
 
 type Counter = int
@@ -16,11 +17,15 @@ type Model = {
     activeMenuItem : string
     text : string
     isMessageHidden : bool
-} with static member init () = {
+    Visibility :  Semantic.Behaviors.Api.Visibility.Calculations option
+    StickyContext : Fable.Import.Browser.Element option
+} with static member Init () = {
                                   counter = Some 42
                                   activeMenuItem = ""
                                   text = "and React"
                                   isMessageHidden = false
+                                  Visibility = None
+                                  StickyContext = None
                                }
 
 
@@ -30,8 +35,10 @@ type Msg =
  | SetActive of string 
  | NewText of string
  | DismissMessage
+ | OnVisibilityUpdate of Semantic.Behaviors.Api.Visibility.Calculations
+ | SetStickyContext of Fable.Import.Browser.Element
 let init () : Model * Cmd<Msg> = 
-    Model.init () , Cmd.none
+    Model.Init () , Cmd.none
 let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
     let model' =
         match model,  msg with
@@ -40,9 +47,12 @@ let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
         | _ , SetActive x -> { model with activeMenuItem = x }
         | _, NewText x -> { model with text = x }
         | _ , DismissMessage -> { model with isMessageHidden = true }
+        | _, SetStickyContext o -> { model with StickyContext = Some o }
+        | _, OnVisibilityUpdate calc -> { model with Visibility = Some calc}
         | _ ->  model
     model', Cmd.none
 
+open Semantic.Behaviors.Api
 
 let renderMesage model dispatch = 
     if not model.isMessageHidden then 
@@ -311,8 +321,30 @@ let view (model : Model) (dispatch : Msg -> unit) =
                               ] 
 
                           ]
-                        ] 
-
+                ]
+    div [
+        // Ref ( fun e -> Fable.Import.Browser.console.log(e)
+        //                if model.StickyContext.IsNone then 
+        //                  SetStickyContext e |> dispatch
+        //                else 
+        //                  ())
+    ] [
+        Grid.grid [] [
+        Grid.row [ 
+            Grid.Row.Columns Semantic.N2
+        ] [
+            Grid.column [] [
+                Visibility.visibility [
+                     Visibility.OnUpdate (fun _ v -> OnVisibilityUpdate v.calculations |> dispatch )
+                ] [
+                   Wireframe.wireframe ()
+                ]
+            ]
+            Grid.column [] [
+            ]
+        ]
+       ]
+    ]             
   ]
 
 
