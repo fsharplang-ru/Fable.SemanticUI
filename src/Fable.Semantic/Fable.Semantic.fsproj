@@ -33,6 +33,7 @@
     <Compile Include="Views/Card.fs" />
     <Compile Include="Views/Comment.fs" />
     <Compile Include="Views/Feed.fs" />
+    <Compile Include="Views/Item.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
