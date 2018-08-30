@@ -32,6 +32,7 @@
     <Compile Include="Views/Advertisement.fs" />
     <Compile Include="Views/Card.fs" />
     <Compile Include="Views/Comment.fs" />
+    <Compile Include="Views/Feed.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
