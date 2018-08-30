@@ -29,6 +29,7 @@
     <Compile Include="Collections/Table.fs" />
     <Compile Include="Behaviors/Visibility.fs" />
     <Compile Include="Modules/Sticky.fs" />
+    <Compile Include="Views/Advertisement.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

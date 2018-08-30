@@ -348,7 +348,8 @@ let view (model : Model) (dispatch : Msg -> unit) =
                           ]
                 ]
     div [
-        Ref ( fun e -> contextRef <- Some e)
+        Ref ( fun e -> Fable.Import.Browser.console.log(e)
+                       contextRef <- Some e)
     ] [
         Grid.grid [] [
         Grid.row [ 
