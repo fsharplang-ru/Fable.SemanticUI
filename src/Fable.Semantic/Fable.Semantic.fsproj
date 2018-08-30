@@ -31,6 +31,7 @@
     <Compile Include="Modules/Sticky.fs" />
     <Compile Include="Views/Advertisement.fs" />
     <Compile Include="Views/Card.fs" />
+    <Compile Include="Views/Comment.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
