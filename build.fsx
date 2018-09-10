@@ -12,7 +12,7 @@ open Fake.Core
 open Fake.DotNet
 open Fake.IO
 
-let clientPath = Path.getFullName "./src/Client"
+let clientPath = Path.getFullName "./src/Fable.Semantic"
 
 let platformTool tool winTool =
     let tool = if Environment.isUnix then tool else winTool
