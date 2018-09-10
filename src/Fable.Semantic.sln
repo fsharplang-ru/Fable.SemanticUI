@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Client", "Client\Client.fsproj", "{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}"
-EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Fable.Semantic", "Fable.Semantic\Fable.Semantic.fsproj", "{97037515-B83A-483D-91FD-D7063AE587DD}"
 EndProject
 Global
@@ -20,18 +18,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Debug|x64.Build.0 = Debug|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Debug|x86.Build.0 = Debug|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Release|x64.ActiveCfg = Release|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Release|x64.Build.0 = Release|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Release|x86.ActiveCfg = Release|Any CPU
-		{CF2221DF-76B1-4FD0-A068-69A1878DBD9D}.Release|x86.Build.0 = Release|Any CPU
 		{97037515-B83A-483D-91FD-D7063AE587DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{97037515-B83A-483D-91FD-D7063AE587DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97037515-B83A-483D-91FD-D7063AE587DD}.Debug|x64.ActiveCfg = Debug|Any CPU
