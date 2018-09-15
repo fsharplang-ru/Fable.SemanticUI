@@ -6,6 +6,8 @@ https://semantic-ui.com
 - `git clone https://github.com/Neftedollar/semantic-ui-react-fable-experiment.git`
 - `fake build --target run`
 
+https://www.nuget.org/packages/Fable.Semantic/
+
 ## react.semantic-ui.com modules
 
 - Elements (all done)
