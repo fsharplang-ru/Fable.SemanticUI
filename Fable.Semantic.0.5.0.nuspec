@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Fable.Semantic</id>
+    <version>0.5.0</version>
+    <authors>Roman Melnikov</authors>
+    <owners>Roman Melnikov</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>React Semantic UI to Fable bindings</description>
+    <projectUrl>https://github.com/fsharplang-ru/Fable.SemanticUI</projectUrl>
+    <tags>fable fshar[ f# react semantic ui semanticUI</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FSharp.Core" version="4.5.0" exclude="Build,Analyzers" />
+        <dependency id="Fable.Core" version="1.3.17" exclude="Build,Analyzers" />
+        <dependency id="Fable.React" version="3.1.4" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\bin\Release\netstandard2.0\Fable.Semantic.dll" target="lib\netstandard2.0\Fable.Semantic.dll" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Fable.Semantic.fsproj" target="fable\Fable.Semantic.fsproj" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Behaviors\Visibility.fs" target="fable\Behaviors\Visibility.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Collections\Breadcrumb.fs" target="fable\Collections\Breadcrumb.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Collections\Form.fs" target="fable\Collections\Form.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Collections\Grid.fs" target="fable\Collections\Grid.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Collections\Menu.fs" target="fable\Collections\Menu.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Collections\Message.fs" target="fable\Collections\Message.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Collections\Table.fs" target="fable\Collections\Table.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Common.fs" target="fable\Common.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Button.fs" target="fable\Elements\Button.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Container.fs" target="fable\Elements\Container.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Divider.fs" target="fable\Elements\Divider.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Flags.fs" target="fable\Elements\Flags.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Header.fs" target="fable\Elements\Header.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Icon.fs" target="fable\Elements\Icon.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Icons.fs" target="fable\Elements\Icons.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Image.fs" target="fable\Elements\Image.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Input.fs" target="fable\Elements\Input.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Label.fs" target="fable\Elements\Label.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\List.fs" target="fable\Elements\List.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Loader.fs" target="fable\Elements\Loader.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Rail.fs" target="fable\Elements\Rail.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Reveal.fs" target="fable\Elements\Reveal.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Segment.fs" target="fable\Elements\Segment.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Elements\Step.fs" target="fable\Elements\Step.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Modules\Sticky.fs" target="fable\Modules\Sticky.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Views\Advertisement.fs" target="fable\Views\Advertisement.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Views\Card.fs" target="fable\Views\Card.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Views\Comment.fs" target="fable\Views\Comment.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Views\Feed.fs" target="fable\Views\Feed.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Views\Item.fs" target="fable\Views\Item.fs" />
+    <file src="F:\fev\Fable.SemanticUI\Fable.SemanticUI\src\Fable.Semantic\Views\Statistic.fs" target="fable\Views\Statistic.fs" />
+  </files>
+</package>
