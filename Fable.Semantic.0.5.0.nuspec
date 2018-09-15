@@ -8,7 +8,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>React Semantic UI to Fable bindings</description>
     <projectUrl>https://github.com/fsharplang-ru/Fable.SemanticUI</projectUrl>
-    <tags>fable fshar[ f# react semantic ui semanticUI</tags>
+    <tags>fable fsharp f# react semantic ui semanticUI</tags>
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="FSharp.Core" version="4.5.0" exclude="Build,Analyzers" />
