@@ -43,7 +43,7 @@ https://www.nuget.org/packages/Fable.Semantic/
 - Behaviors (all done)
   - Visisbility
 - Modules (need help)
-  - Checkbox
+  - Checkbox (done, need review)
   - Accordion
   - Dimmer
   - Dropdown

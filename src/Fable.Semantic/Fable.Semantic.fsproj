@@ -2,7 +2,6 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.5.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Common.fs" />
@@ -36,9 +35,8 @@
     <Compile Include="Views/Feed.fs" />
     <Compile Include="Views/Item.fs" />
     <Compile Include="Views/Statistic.fs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="*.fsproj; **\*.fs" PackagePath="fable\" />
+    <Content Include="*.fsproj; **/*.fs" />
+    <Compile Include="Modules/Checkbox.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
