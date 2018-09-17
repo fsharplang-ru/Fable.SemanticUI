@@ -8,6 +8,8 @@ https://semantic-ui.com
 
 https://www.nuget.org/packages/Fable.Semantic/
 
+Client example: https://github.com/Neftedollar/semantic-ui-react-fable-experiment/tree/master/src/Client
+
 ## react.semantic-ui.com modules
 
 - Elements (all done)
