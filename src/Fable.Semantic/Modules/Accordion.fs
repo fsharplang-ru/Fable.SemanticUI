@@ -1,3 +1,4 @@
+namespace Semantic.Modules.Api
 open Fable.Import.React
 namespace Semantic.Modules.Api
 
