@@ -47,7 +47,7 @@ Client example: https://github.com/Neftedollar/semantic-ui-react-fable-experimen
 - Modules (need help)
   - Checkbox (done, need review)
   - Accordion
-  - Dimmer
+  - Dimmer (done, need review)
   - Dropdown
   - Embed
   - Modal
