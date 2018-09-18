@@ -30,6 +30,7 @@
     <Compile Include="Behaviors/Visibility.fs" />
     <Compile Include="Modules/Sticky.fs" />
     <Compile Include="Modules/Checkbox.fs" />
+    <Compile Include="Modules/Dimmer.fs" />
     <Compile Include="Views/Advertisement.fs" />
     <Compile Include="Views/Card.fs" />
     <Compile Include="Views/Comment.fs" />
@@ -37,7 +38,7 @@
     <Compile Include="Views/Item.fs" />
     <Compile Include="Views/Statistic.fs" />
     <Content Include="*.fsproj; **/*.fs" />
-    <Compile Include="Modules/Dimmer.fs" />
+    <Compile Include="Modules/Accordion.fs" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
